@@ -2,282 +2,564 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Журнал — Сергей Кириллов | Путь 101% 2026</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#f0f2f5;color:#2c3e50;line-height:1.6}
-.hero{background:linear-gradient(135deg,#1a1a2e,#0f3460);padding:44px 24px 36px;text-align:center}
-.badge{display:inline-block;background:rgba(192,192,192,.2);border:1px solid rgba(192,192,192,.5);color:#c0c0c0;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:18px}
-.avatar{width:88px;height:88px;background:linear-gradient(135deg,#c0c0c0,#808080);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:800;color:#fff;margin:0 auto 18px;box-shadow:0 8px 32px rgba(192,192,192,.4)}
-.hero h1{color:#fff;font-size:30px;font-weight:800;margin-bottom:6px}
-.hero-sub{color:rgba(255,255,255,.5);font-size:13px;letter-spacing:1px;text-transform:uppercase;margin-bottom:28px}
-.stats{display:flex;justify-content:center;gap:36px;flex-wrap:wrap}
-.stat .val{font-size:24px;font-weight:800;color:#fff;display:block}
-.stat .val.g{color:#2ecc71}.stat .val.s{color:#c0c0c0}
-.stat .lbl{font-size:11px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px}
-.prog-wrap{max-width:820px;margin:-18px auto 20px;padding:0 20px}
-.prog-card{background:#fff;border-radius:14px;padding:20px 24px;box-shadow:0 6px 24px rgba(0,0,0,.1)}
-.prog-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.prog-title{font-size:12px;font-weight:700;color:#7f8c8d;text-transform:uppercase;letter-spacing:1px}
-.prog-pct{font-size:20px;font-weight:800;color:#27ae60}
-.track{background:#f0f2f5;border-radius:8px;height:12px;overflow:hidden;margin-bottom:8px}
-.fill{height:100%;background:linear-gradient(90deg,#27ae60,#2ecc71);border-radius:8px;width:100%;position:relative}
-.fill::after{content:'🏆';position:absolute;right:4px;top:-4px;font-size:16px}
-.milestones{display:flex;justify-content:space-between;font-size:11px;color:#7f8c8d}
-.main{max-width:820px;margin:0 auto;padding:0 20px 48px}
-.week{display:flex;align-items:center;gap:10px;margin:28px 0 14px}
-.week-lbl{background:#1a1a2e;color:#fff;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:20px;white-space:nowrap}
-.week-line{flex:1;height:1px;background:#e8ecef}
-.card{background:#fff;border-radius:14px;margin-bottom:14px;box-shadow:0 2px 10px rgba(0,0,0,.06);border:1px solid #e8ecef;overflow:hidden}
-.card:hover{box-shadow:0 4px 20px rgba(0,0,0,.1)}
-.card-hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#f8f9fa;border-bottom:1px solid #e8ecef;cursor:pointer;user-select:none}
-.hdr-l{display:flex;align-items:center;gap:12px}
-.day-num{width:42px;height:42px;background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:9px;font-weight:700;text-transform:uppercase}
-.day-num .n{font-size:18px;font-weight:900;line-height:1}
-.card-info h3{font-size:14px;font-weight:700}
-.card-info .sub{font-size:11px;color:#7f8c8d}
-.hdr-r{display:flex;align-items:center;gap:10px}
-.fb{font-size:12px;font-weight:700;padding:4px 10px;border-radius:7px}
-.fb.z{background:#fef5f5;color:#c0392b}
-.fb.lo{background:#fef9e7;color:#e67e22}
-.fb.hi{background:#eafaf1;color:#27ae60}
-.fb.done{background:#d5f5e3;color:#196f3d;border:1px solid #27ae60}
-.fb.sil{background:rgba(192,192,192,.15);color:#555;border:1px solid rgba(192,192,192,.4)}
-.grow{font-size:11px;color:#27ae60;font-weight:700}
-.tog{color:#7f8c8d;transition:transform .3s}
-.card.open .tog{transform:rotate(180deg)}
-.card-body{display:none}
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Сергей Кириллов · Путь 101% 2026</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0d0d1a;color:#e8e8f0;min-height:100vh}
+.hero{background:linear-gradient(135deg,#1a1a3e 0%,#0d0d1a 70%);padding:48px 24px 32px;text-align:center;border-bottom:1px solid rgba(255,255,255,.06)}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:2px;padding:5px 14px;border-radius:20px;margin-bottom:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);text-transform:uppercase}
+.avatar{width:72px;height:72px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:#fff}
+h1{font-size:clamp(24px,4vw,36px);font-weight:900;color:#fff;margin-bottom:8px}
+.hero-sub{font-size:14px;color:#888;margin-bottom:24px}
+.stats{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px 20px;text-align:center;min-width:100px}
+.val{display:block;font-size:20px;font-weight:800;color:#fff}
+.val.g{color:#22c55e}.val.a{color:#f5c842}.val.o{color:#f97316}
+.lbl{display:block;font-size:10px;color:#555;text-transform:uppercase;letter-spacing:1.5px;margin-top:3px}
+.prog-wrap{padding:24px 24px 0;max-width:820px;margin:0 auto}
+.prog-card{background:#16162a;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px 20px}
+.prog-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px}
+.prog-title{font-size:13px;font-weight:700;color:#fff}
+.prog-pct{font-size:12px;color:#888}
+.track{height:10px;background:#1e1e35;border-radius:5px;overflow:hidden;margin-bottom:8px}
+.fill{height:100%;border-radius:5px}
+.milestones{display:flex;justify-content:space-between;font-size:10px;color:#555}
+.main{max-width:820px;margin:0 auto;padding:24px}
+.week{display:flex;align-items:center;gap:12px;margin:32px 0 14px}
+.week-lbl{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#555;white-space:nowrap}
+.week-line{flex:1;height:1px;background:rgba(255,255,255,.06)}
+.card{background:#16162a;border:1px solid rgba(255,255,255,.07);border-radius:14px;margin-bottom:12px;overflow:hidden}
+.card-hdr{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;cursor:pointer;gap:12px;user-select:none}
+.card-hdr:hover{background:rgba(255,255,255,.02)}
+.hdr-l{display:flex;align-items:center;gap:14px;flex:1;min-width:0}
+.day-num{text-align:center;min-width:44px}
+.day-num .n{display:block;font-size:22px;font-weight:900;color:#fff;line-height:1}
+.day-num{font-size:10px;color:#555;text-transform:uppercase}
+.card-info h3{font-size:14px;font-weight:700;color:#fff;line-height:1.3}
+.card-info .sub{font-size:11px;color:#555;margin-top:2px}
+.hdr-r{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.fb{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px}
+.fb.z{background:#ef444422;color:#ef4444;border:1px solid #ef444433}
+.fb.lo{background:#f9731622;color:#f97316;border:1px solid #f9731633}
+.fb.hi{background:#22c55e22;color:#22c55e;border:1px solid #22c55e33}
+.fb.done{background:#22c55e11;color:#22c55e;border:2px solid #22c55e}
+.tog{font-size:12px;color:#444;transition:.2s;margin-left:4px}
+.card-body{padding:0 18px 18px;display:none}
 .card.open .card-body{display:block}
-.blk{padding:16px 18px;border-bottom:1px solid #e8ecef}
-.blk:last-child{border-bottom:none}
-.blk-lbl{display:flex;align-items:center;gap:7px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:9px}
-.blk-lbl .dot{width:7px;height:7px;border-radius:50%}
-.blk.mo{background:#e8f4fd}.blk.mo .blk-lbl{color:#2980b9}.blk.mo .dot{background:#3498db}
-.blk.ev{background:#eafaf1}.blk.ev .blk-lbl{color:#1e8449}.blk.ev .dot{background:#27ae60}
-.blk.cn{background:#fef9e7}.blk.cn .blk-lbl{color:#b7770d}.blk.cn .dot{background:#f39c12}
-.blk-txt{font-size:13px;line-height:1.7}
-.mrow{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}
-.m{background:#fff;border:1px solid #e8ecef;border-radius:7px;padding:7px 12px;font-size:11px}
-.m .ml{color:#7f8c8d;margin-bottom:2px}
-.m .mv{font-weight:700;font-size:13px}
-.m .mv.a{color:#27ae60}.m .mv.r{color:#e74c3c}.m .mv.s{color:#888}
-.final{background:linear-gradient(135deg,#1a1a2e,#16213e);border-radius:18px;padding:32px;margin-top:28px}
-.final-badge{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#c0c0c0;margin-bottom:8px}
-.final h2{font-size:22px;font-weight:800;color:#fff;margin-bottom:22px;line-height:1.3}
-.final-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px}
-@media(max-width:580px){.final-grid{grid-template-columns:1fr}}
-.fb2{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px}
-.fb2 h4{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:9px}
+.card.open .tog{transform:rotate(180deg)}
+.blk{border-radius:10px;padding:14px 16px;margin-bottom:10px}
+.blk.mo{background:#1e2a3a;border-left:3px solid #3b82f6}
+.blk.ev{background:#1a2a1a;border-left:3px solid #22c55e}
+.blk.cn{background:#2a2a1a;border-left:3px solid #f5c842}
+.blk.pu{background:#2a1a3a;border-left:3px solid #a855f7}
+.blk-lbl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#555;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.dot{width:6px;height:6px;border-radius:50%;background:currentColor;display:inline-block}
+.blk.mo .dot{color:#3b82f6}
+.blk.ev .dot{color:#22c55e}
+.blk.cn .dot{color:#f5c842}
+.blk.pu .dot{color:#a855f7}
+.msg-item{margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px;line-height:1.7;color:#ccc}
+.msg-item:last-child{border:none;margin-bottom:0;padding-bottom:0}
+.msg-time{display:inline-block;font-size:10px;color:#555;margin-right:8px;font-family:monospace;background:#0d0d1a;padding:1px 6px;border-radius:4px}
+.mrow{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.m{background:#0d0d1a;border-radius:8px;padding:8px 12px;min-width:100px}
+.ml{font-size:10px;color:#555;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px}
+.mv{font-size:14px;font-weight:700;color:#fff}
+.mv.a{color:#f5c842}
+.final{background:linear-gradient(135deg,#1a1a3e,#0d0d1a);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:28px;margin-top:28px}
+.final-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:20px}
+.fb2{background:#16162a;border-radius:10px;padding:16px}
+.fb2 h4{font-size:12px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
 .fb2 ul{list-style:none;padding:0}
-.fb2 ul li{font-size:12px;color:rgba(255,255,255,.8);padding:3px 0 3px 14px;position:relative}
-.fb2 ul li::before{content:'→';position:absolute;left:0;color:#c0c0c0;font-weight:700}
-.verdict{background:rgba(192,192,192,.1);border:1px solid rgba(192,192,192,.25);border-radius:10px;padding:18px}
-.verdict p{font-size:13px;color:rgba(255,255,255,.85);line-height:1.8}
-.verdict strong{color:#c0c0c0}
+.fb2 li{font-size:12px;color:#888;padding:5px 0;border-bottom:1px solid #111;display:flex;align-items:flex-start;gap:6px}
+.fb2 li::before{content:'→';color:#444;flex-shrink:0}
+a.back{display:inline-block;margin:20px 24px 0;font-size:12px;color:#555;text-decoration:none;border:1px solid #222;border-radius:8px;padding:6px 14px}
+a.back:hover{color:#fff;border-color:#444}
+footer{text-align:center;padding:32px;font-size:11px;color:#333}
 </style>
 </head>
 <body>
-
+<a href="index.html" class="back">← Все менеджеры</a>
 <div class="hero">
-  <div class="badge">🥈 2-е место · Путь 101% 2026</div>
-  <div class="avatar">СК</div>
+  <div class="badge">🥈 100.0% плана</div>
+  <div class="avatar" style="background:linear-gradient(135deg,#aab0c0,#7a8090)">СК</div>
   <h1>Сергей Кириллов</h1>
-  <div class="hero-sub">Менеджер по продажам · Личный журнал апреля</div>
+  <div class="hero-sub">Менеджер по продажам · Апрель–Май 2026</div>
   <div class="stats">
-    <div class="stat"><span class="val">500к → 1 000 000 ₽</span><span class="lbl">План апреля</span></div>
-    <div class="stat"><span class="val g">1 070 000 ₽</span><span class="lbl">Факт апреля</span></div>
-    <div class="stat"><span class="val s">107%</span><span class="lbl">Выполнение</span></div>
-    <div class="stat"><span class="val">🥈 2-е место</span><span class="lbl">Итог игры</span></div>
+    <div class="stat"><span class="val">1 000 000 ₽</span><span class="lbl">План</span></div>
+    <div class="stat"><span class="val g">1 000 000 ₽</span><span class="lbl">Факт (макс)</span></div>
+    <div class="stat"><span class="val g">100.0%</span><span class="lbl">Выполнение</span></div>
+    <div class="stat"><span class="val">23</span><span class="lbl">Активных дней</span></div>
+    <div class="stat"><span class="val">16</span><span class="lbl">Утренних отч.</span></div>
+    <div class="stat"><span class="val">22</span><span class="lbl">Рефлексий</span></div>
   </div>
 </div>
-
 <div class="prog-wrap">
   <div class="prog-card">
     <div class="prog-hdr">
-      <span class="prog-title">Прогресс апреля</span>
-      <span class="prog-pct">107% плана — 1 070 000 ₽ при плане 1 000 000 ₽</span>
+      <span class="prog-title">Прогресс апреля–мая</span>
+      <span class="prog-pct">100.0% плана · 1 000 000 ₽ при плане 1 000 000 ₽</span>
     </div>
-    <div class="track"><div class="fill"></div></div>
-    <div class="milestones"><span>0 ₽</span><span>250к</span><span>500к (план-1)</span><span>1кк (план-2)</span><span>1 070к ✓</span></div>
+    <div class="track"><div class="fill" style="width:100.0%;background:linear-gradient(90deg,#aab0c0,#7a8090)"></div></div>
+    <div class="milestones">
+      <span>0 ₽</span><span>250 000 ₽</span><span>500 000 ₽</span><span>1 000 000 ₽ (план)</span>
+    </div>
   </div>
 </div>
-
 <div class="main">
-
-  <div class="week"><span class="week-lbl">Старт · 1 апреля</span><div class="week-line"></div></div>
-
-  <div class="card open" id="s1">
-    <div class="card-hdr" onclick="toggle('s1')">
-      <div class="hdr-l">
-        <div class="day-num"><span class="n">1</span>апр</div>
-        <div class="card-info"><h3>Первый в команде с оплатой</h3><div class="sub">Среда · Старт марафона</div></div>
-      </div>
-      <div class="hdr-r"><span class="fb hi">50 000 ₽</span><span class="tog">▼</span></div>
-    </div>
-    <div class="card-body">
-      <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя</div>
-        <div class="blk-txt">Утренний ритуал с фото/видео. Настроен на результат с первого дня — не тратит время на «раскачку». Чёткий план: работать по базе, закрывать горячих.</div>
-      </div>
-      <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня</div>
-        <div class="mrow">
-          <div class="m"><div class="ml">Факт</div><div class="mv a">50 000 ₽</div></div>
-          <div class="m"><div class="ml">В команде</div><div class="mv a">1-й с оплатой</div></div>
-          <div class="m"><div class="ml">Осталось</div><div class="mv">450 000 ₽</div></div>
-        </div>
-        <div class="blk-txt">Закрыл сделку в первый день апреля. Первым в команде. Рефлексия в срок — победы дня зафиксированы, план на завтра чёткий.</div>
-      </div>
-      <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div>
-        <div class="blk-txt">50к в первый день — сигнал о выстроенном пайплайне. Пока Савелий сидел на 9 900₽ неделю, Сергей сразу взял 50к. Психологически это очень важно: начало без застоя задаёт темп всему месяцу.</div>
+<div class="week"><span class="week-lbl">Апрель 2026</span><div class="week-line"></div></div><div class="card open" id="d000">
+  <div class="card-hdr" onclick="toggle('d000')">
+    <div class="hdr-l">
+      <div class="day-num"><span class="n">1</span>апр</div>
+      <div class="card-info">
+        <h3>Среда · 01.04.2026</h3>
+        <div class="sub">✓ Утро · ✓ Рефлексия · 4 сообщ.</div>
       </div>
     </div>
+    <div class="hdr-r"><span class="fb hi">500 000 ₽</span><span class="tog">▼</span></div>
   </div>
-
-  <div class="week"><span class="week-lbl">Неделя 2 · Перевыполнение первого плана</span><div class="week-line"></div></div>
-
-  <div class="card" id="s2">
-    <div class="card-hdr" onclick="toggle('s2')">
-      <div class="hdr-l">
-        <div class="day-num"><span class="n">10</span>апр</div>
-        <div class="card-info"><h3>Первый план закрыт! 595к 🔥</h3><div class="sub">Пятница · Перевыполнение 500к</div></div>
-      </div>
-      <div class="hdr-r"><span class="grow">+545к за 10 дней</span><span class="fb done">595 817 ₽ ✓</span><span class="tog">▼</span></div>
-    </div>
-    <div class="card-body">
-      <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя</div>
-        <div class="blk-txt">Утренний ритуал. Входит в пятницу зная, что цель 500к — в руках. Не расслабляется: продолжает прозвон по базе.</div>
-      </div>
-      <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня</div>
-        <div class="mrow">
-          <div class="m"><div class="ml">Факт</div><div class="mv a">595 817 ₽</div></div>
-          <div class="m"><div class="ml">Перевыполнение</div><div class="mv a">+119.2%</div></div>
-          <div class="m"><div class="ml">Осталось до 1кк</div><div class="mv">404 183 ₽</div></div>
-        </div>
-        <div class="blk-txt">К 10 апреля — перевыполнил первоначальный план 500к на 19%. По итогам недели — лидер по баллам игры: 85 очков (1-е место в неделю). Победы дня зафиксированы.</div>
-      </div>
-      <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div>
-        <div class="blk-txt">595к за 10 дней = ~60к/день средний темп. Если сохранить, к 30-му будет 1,8 млн. Значит — план повышен с 500к до 1кк. Это правильное решение и для него, и для компании. Не потолок, а новый старт.</div>
-      </div>
-    </div>
+  <div class="card-body">
+    <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя · 09:23–10:42</div><div class="msg-item"><span class="msg-time">09:23</span>Мое утро началось с возвращения традиции прослушивания подкастов<br>Каждый раз прослушивая разные подкасты понимаешь, что истина одна, но каждый ее трактует под своим углом<br>Интересно брать с каждого продажника чего то по немногу и создавать уникальную модель продаж<br>План на день<br>Сложно спланировать цифры, так как с клиентами работаю чаще всего с одного касания и вытаскиваю неожиданно 😃<br>Ориентируюсь на 1-2 оплаты</div>
+<div class="msg-item"><span class="msg-time">10:42</span>Мое утро вообще началось с водных процедур (которые я естественно не снимала) 😀<br>Теперь я смотрю сериал, пью чай и настраиваюсь на день!<br>Как правило минут 40 после пробуждения я молчу (это уже традиция и муж привык и не трогает меня по утрам)<br>План на день: давно не было закрытий, сейчас работаю над потенциалами обзваниваю базы<br>Хочу сегодня закрыть хотя бы 1го клиента</div></div>
+    <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня · 21:48–21:57</div><div class="mrow"><div class="m"><div class="ml">Факт</div><div class="mv a">500 000 ₽</div></div><div class="m"><div class="ml">% плана</div><div class="mv ">50.0%</div></div><div class="m"><div class="ml">+За день</div><div class="mv a">500 000 ₽</div></div></div><div class="msg-item"><span class="msg-time">21:48</span>Рефлексия дня:<br>План месяца: 200к<br>Факт: 0<br>Осталось: 200к<br>Победы дня: разослав сообщения по недозвонам нашла потенциалов с которыми можно работать!<br>Закрыла по учебе 3 предмета на которых стояли «н» и вышла из списков на отчисление<br>😏<br>Общие мысли:<br>У самурая нет цели есть только путь к 200к+ по холодке<br>И жизни без академических задолженностей 😹<br>Что я сделаю завтра что бы стать лучше?<br>Продолжу работать с поиском потенциалов что бы те потом превращались в оплаты<br>🤩</div>
+<div class="msg-item"><span class="msg-time">21:57</span>Рефлексия дня<br>План месяца: 500 000 рублей<br>Факт месяца: 50 000 рублей<br>Осталось: 450 000 рублей<br>Победы дня: Сегодня для себя открыл новое средство перемещения - автобус<br>Оказывается это намного быстрее чем на своем автомобиле и не надо ездить по 5 кругов возле офиса и искать место для парковки 😃<br>Пока идешь на остановку заодно разминаешься и лучше задумываешься о своих планах и целях<br>Мысли о прошедшем дне: день прошел интересно, было много крутых контактов, сохраняем контакты и дожимаем<br>Также стал жертвой первоапрельского пранка 😂<br>Завтра сделаю лучше чем сегодня, но хуже чем послезавтра<br>👍🏼<br>Если без шуток, то продолжу выполнять свою работу и делать себя и учеников счастливее 🔥</div></div>
+    
+    <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div><div class="msg-item">Утренний отчёт сдан вовремя. Вечерняя рефлексия есть. Зафиксировано 500 000 ₽ (50.0% плана) — уверенный прогресс. 4 сообщений за день — высокая активность.</div></div>
   </div>
-
-  <div class="week"><span class="week-lbl">Неделя 3 · Лидер недели по баллам</span><div class="week-line"></div></div>
-
-  <div class="card" id="s3">
-    <div class="card-hdr" onclick="toggle('s3')">
-      <div class="hdr-l">
-        <div class="day-num"><span class="n">20</span>апр</div>
-        <div class="card-info"><h3>85 баллов — лучшая неделя</h3><div class="sub">Понедельник · Топ-1 в игре</div></div>
-      </div>
-      <div class="hdr-r"><span class="fb sil">85 очков / неделю</span><span class="tog">▼</span></div>
-    </div>
-    <div class="card-body">
-      <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя</div>
-        <div class="blk-txt">Утренний ритуал зафиксирован. Диана публикует рейтинг недели — Сергей на 1-м месте с 85 баллами. Это максимум: 5 (утро) + 5 (продажи 50к+) + 15 (обучение) × 5 дней + бонусы.</div>
-      </div>
-      <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня</div>
-        <div class="mrow">
-          <div class="m"><div class="ml">Баллы за неделю</div><div class="mv a">85 очков (1-е место)</div></div>
-          <div class="m"><div class="ml">Баллы за месяц</div><div class="mv a">306 очков (лидер)</div></div>
-        </div>
-        <div class="blk-txt">По совокупным баллам месяца — тоже 1-е место (306 очков). Продажи + дисциплина дают синергию. Рефлексия зафиксирована, план на завтра чёткий.</div>
-      </div>
-      <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div>
-        <div class="blk-txt">Редкое сочетание: лидер и по продажам, и по игровой дисциплине. 306 баллов из 460 возможных = 66.5%. Остаток апреля — шанс добрать баллы и деньги. До 1кк осталось ~404к за ~10 дней.</div>
+</div><div class="card" id="d001">
+  <div class="card-hdr" onclick="toggle('d001')">
+    <div class="hdr-l">
+      <div class="day-num"><span class="n">2</span>апр</div>
+      <div class="card-info">
+        <h3>Четверг · 02.04.2026</h3>
+        <div class="sub">— Утро · ✓ Рефлексия · 6 сообщ.</div>
       </div>
     </div>
+    <div class="hdr-r"><span class="fb hi">500 000 ₽</span><span class="tog">▼</span></div>
   </div>
-
-  <div class="week"><span class="week-lbl">Финал · 30 апреля</span><div class="week-line"></div></div>
-
-  <div class="card" id="s4">
-    <div class="card-hdr" onclick="toggle('s4')">
-      <div class="hdr-l">
-        <div class="day-num"><span class="n">30</span>апр</div>
-        <div class="card-info"><h3>Итог: 1 070 000 ₽ 🏆</h3><div class="sub">Четверг · Финал апреля</div></div>
-      </div>
-      <div class="hdr-r"><span class="grow">+107% плана</span><span class="fb done">1 070 000 ₽ ✓</span><span class="tog">▼</span></div>
-    </div>
-    <div class="card-body">
-      <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя</div>
-        <div class="blk-txt">Последний день апреля. Утренний ритуал соблюдён. Продолжает звонить и закрывать — каждый день до последнего.</div>
-      </div>
-      <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня</div>
-        <div class="mrow">
-          <div class="m"><div class="ml">Итог апреля</div><div class="mv a">1 070 000 ₽</div></div>
-          <div class="m"><div class="ml">Выполнение плана</div><div class="mv a">107% от 1кк</div></div>
-          <div class="m"><div class="ml">Перевыполнение</div><div class="mv a">+70 000 ₽</div></div>
-        </div>
-        <div class="blk-txt">Закрыл план 1кк и вышел за него на +70к. Рефлексия финального дня — победы зафиксированы, уже думает о мае.</div>
-      </div>
-      <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div>
-        <div class="blk-txt">1,07 млн при плане 500к (первоначальном) = 214% от стартового плана. Даже от повышенного плана 1кк = 107%. Такой результат — следствие системного подхода с первого дня, а не финального спринта.</div>
-      </div>
-    </div>
+  <div class="card-body">
+    
+    <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня · 20:49–21:26</div><div class="mrow"><div class="m"><div class="ml">Факт</div><div class="mv a">500 000 ₽</div></div><div class="m"><div class="ml">% плана</div><div class="mv ">50.0%</div></div></div><div class="msg-item"><span class="msg-time">20:49</span>План на месяц: 500 000 рублей<br>Факт месяца: 50 000 рублей<br>Осталось: 450 000 рублей<br>Сегодня завершил день походом в центр Питера, удалось сделать такой красивый кадр с Исаакиевским собором<br>Провел сегодня две диагностики, помимо стандартных звонков, немного меняю свою стратегию, посмотрим какие плоды она принесет<br>Победа дна:<br>Применяю новый подход к обзвону<br>P.s. первый абзац это мысли за 15 марта, сейчас я дома уже в Уфе 👋🏻</div>
+<div class="msg-item"><span class="msg-time">21:26</span>План на месяц: 200к<br>Факт: 0 🫠<br>Осталось: 200к<br>Победы дня: вытащила 2х потенциалов с базы 9900<br>В остальном затишье, надеюсь перед бурей продаж 🙏<br>Основная мысль дня: после общения с клиентами по базе, есть понимание что они позитивно настроены, даже те кто еще не начал торговать, но пока что сыроватые потому что еще не торговали нормально, будем работать<br>Что я сделаю что бы быть лучше?<br>Нужно завтра дозвониться базу, что бы понимать основной потенциал</div></div>
+    <div class="blk pu"><div class="blk-lbl"><span class="dot"></span>В течение дня · 11:09–12:15</div><div class="msg-item"><span class="msg-time">11:09</span>Утро началось с английского<br>Уже 110 дней без перерывов прохожу уроки в Duolingo<br>Кто то говорит что это фигня и он не помогает изучить, как по мне нормально, многие фразы уже понимаю и сама в целом могу составить<br>Планы на день: ХОЧУ ПРОДАЖУУУУ<br>🔥</div>
+<div class="msg-item"><span class="msg-time">11:58</span>С утра, «работаем братья»<br>Чуть опаздываю в офис, но зато с чистой совестью, что смог сориентироваться под клиента и провести относительно ранний созвон<br>Чувствую немного себя в предболезненном состоянии, но настрой боевой<br>Планы на день: сделать 1-2 оплаты</div>
+<div class="msg-item"><span class="msg-time">12:01</span>Давление чуть с утра просто, не заразно 😀</div>
+<div class="msg-item"><span class="msg-time">12:15</span>Спасибо большое 🔥</div></div>
+    <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div><div class="msg-item">Утренний отчёт в этот день не зафиксирован. Вечерняя рефлексия есть. Зафиксировано 500 000 ₽ (50.0% плана) — уверенный прогресс. 6 сообщений за день — высокая активность.</div></div>
   </div>
-
-  <div class="card" id="s5">
-    <div class="card-hdr" onclick="toggle('s5')">
-      <div class="hdr-l">
-        <div class="day-num"><span class="n">4</span>май</div>
-        <div class="card-info"><h3>Май: первый день — 130к</h3><div class="sub">Понедельник · Новый месяц</div></div>
-      </div>
-      <div class="hdr-r"><span class="fb hi">130 000 ₽</span><span class="tog">▼</span></div>
-    </div>
-    <div class="card-body">
-      <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя</div>
-        <div class="blk-txt">Новый месяц — новый ритуал. Изучает новый продукт «Клод» (Claude AI), готовится к продажам. Стандарт не снижает.</div>
-      </div>
-      <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня</div>
-        <div class="mrow">
-          <div class="m"><div class="ml">Новый план (май)</div><div class="mv">1 000 000 ₽</div></div>
-          <div class="m"><div class="ml">Факт 4 мая</div><div class="mv a">130 000 ₽</div></div>
-        </div>
-        <div class="blk-txt">130к в первый рабочий день мая — темп выше апрельского старта (50к 1 апреля). Поставил себе тот же план — 1кк. Начало сильное.</div>
-      </div>
-      <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div>
-        <div class="blk-txt">130к в первый день мая против 50к в первый день апреля — рост входного темпа в 2.6 раза. Если апрель вышел в 1,07 млн при старте 50к, май может быть ещё лучше. Следим.</div>
+</div><div class="card" id="d002">
+  <div class="card-hdr" onclick="toggle('d002')">
+    <div class="hdr-l">
+      <div class="day-num"><span class="n">3</span>апр</div>
+      <div class="card-info">
+        <h3>Пятница · 03.04.2026</h3>
+        <div class="sub">— Утро · — Рефлексия · 1 сообщ.</div>
       </div>
     </div>
+    <div class="hdr-r"><span class="fb lo">—</span><span class="tog">▼</span></div>
   </div>
-
-  <div class="final">
-    <div class="final-badge">Итоговый вывод по менеджеру</div>
-    <h2 style="font-size:22px;font-weight:800;color:#fff;margin-bottom:22px;line-height:1.3">Сергей Кириллов — апрель 2026<br>🥈 2-е место · 1 070 000 ₽ (107% плана)</h2>
-    <div class="final-grid">
-      <div class="fb2"><h4>Сильные стороны</h4><ul>
-        <li>Первый в команде с оплатой уже в день старта</li>
-        <li>Выполнил 500к к 10 апреля — быстрее всех</li>
-        <li>Лидер по недельным баллам игры (85 очков)</li>
-        <li>Стабильный ежедневный темп без провалов</li>
-        <li>107% плана 1кк = самый высокий абсолютный факт</li>
-      </ul></div>
-      <div class="fb2"><h4>Зоны роста</h4><ul>
-        <li>2-е место в игре (по баллам) — дисциплина чуть уступает Нате</li>
-        <li>Итог 1,07к vs 1,4к Наты — разрыв в абсолюте</li>
-        <li>Потенциал повышения плана выше 1кк на май</li>
-      </ul></div>
-      <div class="fb2"><h4>Ключевые цифры</h4><ul>
-        <li>День 1: 50 000₽ — первый в команде</li>
-        <li>День 10: 595 817₽ — перевыполнил план 500к</li>
-        <li>Неделя 3: 306 баллов — лидер по очкам</li>
-        <li>День 30: 1 070 000₽ — финал апреля</li>
-        <li>1 мая: 130 000₽ — старт мая</li>
-      </ul></div>
-      <div class="fb2"><h4>Стиль работы</h4><ul>
-        <li>Системный: не спринт, а ровный высокий темп</li>
-        <li>Ранний старт: 50к уже в день 1</li>
-        <li>Совмещение баллов и продаж — всестороннее участие</li>
-        <li>Реагирует на повышение плана без страха</li>
-      </ul></div>
-    </div>
-    <div class="verdict"><p><strong>Вердикт:</strong> Сергей Кириллов — самый результативный по абсолютному факту (1,07 млн). Взял 2-е место в игре, уступив Нате только по совокупной дисциплине. <strong>Его формула:</strong> мощный старт (50к в день 1) + ровный темп + лидерство в недельных баллах = системный победитель. На май — те же 1кк, но старт уже в 2.6 раза мощнее.</p></div>
+  <div class="card-body">
+    
+    
+    <div class="blk pu"><div class="blk-lbl"><span class="dot"></span>В течение дня · 11:29</div><div class="msg-item"><span class="msg-time">11:29</span>Сегодняшнее утро началось с клинической психологии<br>Повторения билетов, а сейчас я уже еду на экзамен😀<br>Планы на день: до конца обзвонить базу 9900</div></div>
+    <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div><div class="msg-item">Утренний отчёт в этот день не зафиксирован. Вечерняя рефлексия не зафиксирована. Денежный результат в сообщениях этого дня явно не указан. Одно сообщение — краткий контакт с командой.</div></div>
   </div>
-
+</div><div class="card" id="d003">
+  <div class="card-hdr" onclick="toggle('d003')">
+    <div class="hdr-l">
+      <div class="day-num"><span class="n">6</span>апр</div>
+      <div class="card-info">
+        <h3>Понедельник · 06.04.2026</h3>
+        <div class="sub">✓ Утро · ✓ Рефлексия · 5 сообщ.</div>
+      </div>
+    </div>
+    <div class="hdr-r"><span class="fb hi">500 000 ₽</span><span class="tog">▼</span></div>
+  </div>
+  <div class="card-body">
+    <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя · 11:00</div><div class="msg-item"><span class="msg-time">11:00</span>Всем доброе утро<br>Мое начинается с просмотра сериала и пью чай в тишине<br>Настраиваюсь на рабочий день и неделю в целом<br>Планы на день:<br>Дожимать потенциалов и закрыть хотя бы одну продажу</div></div>
+    <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня · 21:04–21:31</div><div class="mrow"><div class="m"><div class="ml">Факт</div><div class="mv a">500 000 ₽</div></div><div class="m"><div class="ml">% плана</div><div class="mv ">50.0%</div></div></div><div class="msg-item"><span class="msg-time">21:04</span>Рефлексия дня:<br>План месяца: 500 000 рублей<br>Факт месяца: 187 000 рублей<br>Осталось: 313 000 рублей<br>Победы дня:<br>Понедельник и правда легким не бывает, сегодня не самый лучший день, не в рамках работы, а вообще в принципе, все не задалось с утра<br>Установил хороший контакт с учеником, помог ей настроить впн и привели к жизни ее телеграмм, очень довольна, на этих эмоциях попробую сыграть в долгую<br>Тестируем практики нескольких касаний, уверен, что это даст свои плоды ✍️<br>Что сделаю завтра:<br>Каждый день это новый эксперимент, завтра сделаю то, что не сделал сегодня, если сработает то напишу детальнее в итогах завтрашнего дня<br>Фото ночного Стамбула</div>
+<div class="msg-item"><span class="msg-time">21:31</span>Рефлексия дня:<br>План 200к<br>Факт 0<br>Осталось 200к<br>Победы дня: осознание того что нужно что то менять в подходе работы с клиентами<br>Общие мысли о прошедшем дне: появилось понимание как можно эффективнее работать с базами, подумать над тем как можно выстраивать с ними коммуникацию<br>Что я сделаю завтра: попробую найти для себя новый подход работы с клиентами</div></div>
+    <div class="blk pu"><div class="blk-lbl"><span class="dot"></span>В течение дня · 11:03–11:45</div><div class="msg-item"><span class="msg-time">11:03</span>Сдала😀</div>
+<div class="msg-item"><span class="msg-time">11:45</span>Понравилось слушать подкасты, особенно во время дороги<br>Подсознание собирает только самую ценную информацию и оставляет ее в памяти<br>Пока едешь, многие моменты можешь проанализировать и наметить для себя новые горизонты</div></div>
+    <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div><div class="msg-item">Утренний отчёт сдан вовремя. Вечерняя рефлексия есть. Зафиксировано 500 000 ₽ (50.0% плана) — уверенный прогресс. 5 сообщений за день — высокая активность.</div></div>
+  </div>
+</div><div class="card" id="d004">
+  <div class="card-hdr" onclick="toggle('d004')">
+    <div class="hdr-l">
+      <div class="day-num"><span class="n">7</span>апр</div>
+      <div class="card-info">
+        <h3>Вторник · 07.04.2026</h3>
+        <div class="sub">— Утро · ✓ Рефлексия · 4 сообщ.</div>
+      </div>
+    </div>
+    <div class="hdr-r"><span class="fb hi">500 000 ₽</span><span class="tog">▼</span></div>
+  </div>
+  <div class="card-body">
+    
+    <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня · 21:24–21:36</div><div class="mrow"><div class="m"><div class="ml">Факт</div><div class="mv a">500 000 ₽</div></div><div class="m"><div class="ml">% плана</div><div class="mv ">50.0%</div></div></div><div class="msg-item"><span class="msg-time">21:24</span>Рефлексия дня:<br>План месяца: 500 000 рублей<br>Факт месяца: 183 000 рублей<br>Осталось: 317 000 рублей<br>Обзвонив базу за 9900 понял, что очень много учеников, которые опускают руки на первой же проблеме<br>Сегодня помог двум ученицам у которых была проблема банально в поиске своего личного кабинета геткурса, казалось бы проблема решается в одну минуту, однако уже на таком этапе происходит потеря лида в дальнейшей воронке<br>Решив все вопросы, появилась радость на прохождение обучения, так что особенно важно подкручивать каждую детальку, чтоб машина ехала 🔥<br>Завтра сделаю новый подход к базе используя все фишки, о которых сегодня расскажут на вебинаре</div>
+<div class="msg-item"><span class="msg-time">21:36</span>Рефлексия дня:<br>План: 200к<br>Факт: 0<br>Осталось: 200к<br>Победы дня:<br>Еще один экзамен сдан🥳<br>Наконец то до конца обработала всех по базе 9900 и начала новую базу<br>Общие мысли:<br>Очень сильное непонимание людей которые купили программу за 9900 и думают что теперь они умеют и могут все, а когда пытаешься им что то объяснить они тебе не верят. И не понятно как с ними бороться<br>Что я сделаю завтра:<br>Буду продолжать работать с клиентами в несколько компаний сегодня это дало что многие вышли на связь, хотя игнорили после первого<br>Фото было сделано пару дней назад когда ехала на работу🥰</div></div>
+    <div class="blk pu"><div class="blk-lbl"><span class="dot"></span>В течение дня · 11:16–11:19</div><div class="msg-item"><span class="msg-time">11:16</span>Так же как и вчера начинаю утро с сериала, немного получилось посидеть настроится, попить горяченького чая ☕️<br>Планы на день: сдать экзамен еще один, и подумать над новой стратегией обработки базы</div>
+<div class="msg-item"><span class="msg-time">11:19</span>Сегодня тоже решил возобновить обучение по английскому<br>Ранее обучался по Дуолинго пару месяцев и уже было заметно, что говорить и понимать становится намного проще<br>Когда ездили в Стамбул решил особенно на это обратить внимание, так как нет ничего лучшего чем живое общение с носителем языка<br>План на день: сделать 1-2 оплаты</div></div>
+    <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div><div class="msg-item">Утренний отчёт в этот день не зафиксирован. Вечерняя рефлексия есть. Зафиксировано 500 000 ₽ (50.0% плана) — уверенный прогресс. 4 сообщений за день — высокая активность.</div></div>
+  </div>
+</div><div class="card" id="d005">
+  <div class="card-hdr" onclick="toggle('d005')">
+    <div class="hdr-l">
+      <div class="day-num"><span class="n">8</span>апр</div>
+      <div class="card-info">
+        <h3>Среда · 08.04.2026</h3>
+        <div class="sub">✓ Утро · ✓ Рефлексия · 7 сообщ.</div>
+      </div>
+    </div>
+    <div class="hdr-r"><span class="fb hi">500 000 ₽</span><span class="tog">▼</span></div>
+  </div>
+  <div class="card-body">
+    <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя · 10:55</div><div class="msg-item"><span class="msg-time">10:55</span>Сегодня решила начать утро с Английского<br>Вернула серию правильных ответов😀<br>И 116 день без остановки<br>План на день: хочется уже закрыть хоть кого то из потенциалов 🙏</div></div>
+    <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня · 21:42–21:49</div><div class="mrow"><div class="m"><div class="ml">Факт</div><div class="mv a">500 000 ₽</div></div><div class="m"><div class="ml">% плана</div><div class="mv ">50.0%</div></div></div><div class="msg-item"><span class="msg-time">21:42</span>Рефлексия дня:<br>План на месяц: 500 000 рублей<br>Факт месяца: 193 000 рублей<br>Осталось: 307 000 рублей<br>Победа дня: прошла оплата которую тянул достаточно долго, вопрос решался с технической частью и пошли первые плоды когда берешь клиента в долгую<br>Что я сделаю завтра:<br>Завтра я буду максимально выжимать своих горячих, чтоб сделать высокую конверсию<br>Это Лего машина, которую я собирал почте месяц<br>На фото не видно насколько она габаритная</div>
+<div class="msg-item"><span class="msg-time">21:49</span>Рефлексия дня<br>План: 200к<br>Факт:0<br>Осталось: 200к<br>Победы дня: отсутствуют, нет чего то такого что я бы могла выделить<br>Общие мысли о прошедшем дне: радует что начали выходить на связь люди с 9900 и хоть как то интересоваться большой программой, самое главное удержать их интерес<br>Что я сделаю завтра что бы стать лучше: день запуска, поэтому нужно будет максимально быстро обрабатывать клиентов и выходить на хороший процент конверсии</div></div>
+    <div class="blk pu"><div class="blk-lbl"><span class="dot"></span>В течение дня · 11:07–12:38</div><div class="msg-item"><span class="msg-time">11:07</span>Сегодня решил начать утро с просмотра урока<br>Все больше попадаются ученики у которых остро стоят технические вопросы, поэтому важно быть подкованным, чтоб сразу решить вопрос и получить больше доверия со стороны клиента<br>План дня: сделать 1-2 оплаты</div>
+<div class="msg-item"><span class="msg-time">12:03</span>Описал что многие сдаются и опускают руки на мелких проблемах и решив их человек получает новую волну мотивации что то делать<br>Тем самым для себя победным инсайтом выявил особую внимательность к каждой детали у ученика, чтоб вернуть его к чувствам изучать то что он приобрел</div>
+<div class="msg-item"><span class="msg-time">12:32</span>Орел</div>
+<div class="msg-item"><span class="msg-time">12:38</span>Это про тебя<br>Я только потом увидел вопрос к описанию 😃</div></div>
+    <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div><div class="msg-item">Утренний отчёт сдан вовремя. Вечерняя рефлексия есть. Зафиксировано 500 000 ₽ (50.0% плана) — уверенный прогресс. 7 сообщений за день — высокая активность.</div></div>
+  </div>
+</div><div class="card" id="d006">
+  <div class="card-hdr" onclick="toggle('d006')">
+    <div class="hdr-l">
+      <div class="day-num"><span class="n">9</span>апр</div>
+      <div class="card-info">
+        <h3>Четверг · 09.04.2026</h3>
+        <div class="sub">✓ Утро · ✓ Рефлексия · 3 сообщ.</div>
+      </div>
+    </div>
+    <div class="hdr-r"><span class="fb hi">595 817 ₽</span><span class="tog">▼</span></div>
+  </div>
+  <div class="card-body">
+    <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя · 10:59–11:27</div><div class="msg-item"><span class="msg-time">10:59</span>Всем доброе утро<br>Смотрю сериальчик абстрагируюсь настраиваюсь на день и параллельно работаю с горячими 😀<br>Планы на день отработать запуск</div>
+<div class="msg-item"><span class="msg-time">11:27</span>Доброе утро, вчера легли в 3 часа ночи<br>Утро после запуска это отдельный вайб, многие начинают выходить на связь 👍🏼<br>Уже стоят запланированные звонки, все максимально сумбурно, но зато радует, что есть такое положительный хаос 🔥<br>Сегодня я сделаю максимум, чтоб выйти на хорошую конверсию</div></div>
+    <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня · 21:48</div><div class="mrow"><div class="m"><div class="ml">Факт</div><div class="mv a">595 817 ₽</div></div><div class="m"><div class="ml">% плана</div><div class="mv ">59.6%</div></div><div class="m"><div class="ml">+За день</div><div class="mv a">95 817 ₽</div></div></div><div class="msg-item"><span class="msg-time">21:48</span>Рефлексия дня:<br>План на месяц: 500 000 рублей<br>Факт месяца: 595 817 рублей<br>Осталось: 0 рублей<br>Сегодня прошел достаточно бурный день, весь день общался как с холодными так и с горячими, поймал себя на мысли что соскучился по запускам, как будто их давно не было по ощущениям 😃<br>Победа дня:<br>Довел клиента до вип тарифа с которым мы общаемся по всем продуктам еще с марта 2024 года<br>Что я сделаю завтра ?<br>Завтра постараюсь сделать еще лучше чем сегодня 🔥</div></div>
+    
+    <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div><div class="msg-item">Утренний отчёт сдан вовремя. Вечерняя рефлексия есть. Зафиксировано 595 817 ₽ (59.6% плана) — уверенный прогресс.</div></div>
+  </div>
+</div><div class="card" id="d007">
+  <div class="card-hdr" onclick="toggle('d007')">
+    <div class="hdr-l">
+      <div class="day-num"><span class="n">10</span>апр</div>
+      <div class="card-info">
+        <h3>Пятница · 10.04.2026</h3>
+        <div class="sub">✓ Утро · ✓ Рефлексия · 6 сообщ.</div>
+      </div>
+    </div>
+    <div class="hdr-r"><span class="fb hi">595 817 ₽</span><span class="tog">▼</span></div>
+  </div>
+  <div class="card-body">
+    <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя · 11:33–11:45</div><div class="msg-item"><span class="msg-time">11:33</span>Доброе утро<br>Сегодня утро началось чуть позже обычного, работаем с дома, можно на 15 минут полежать дольше 😃<br>После этого решил послушать подкаст психология личности,<br>Заметил за собой, что с каждым прослушиванием подкастов и обучений день уже становится намного продуктивнее<br>Действительно работает цепочка правильных действий<br>Всем энергии 🔥</div>
+<div class="msg-item"><span class="msg-time">11:45</span>Доброе утро<br>Сегодня было утро Duolingo<br>Улучшаем свой английский хотя бы на базе знания слов<br>Но могу сказать что он реально помогает, т.к я стала на много лучше понимать фразы и улавливать контекст<br>😏</div></div>
+    <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня · 21:49–21:55</div><div class="mrow"><div class="m"><div class="ml">Факт</div><div class="mv a">595 817 ₽</div></div><div class="m"><div class="ml">% плана</div><div class="mv ">59.6%</div></div></div><div class="msg-item"><span class="msg-time">21:49</span>Рефлексия дня:<br>План месяца: 500 000 рублей<br>Факт месяца: 595 817 рублей<br>Осталось: 0 рублей<br>Сегодня день прошел максимально на легке, но не могу сказать что это негативно сказалось на результате, дожимаю горячих, либо как сказать выжимаю воду из камня<br>Победа дня: поставил себе сегодня цель достучаться до глубокого игнорщика и наконец то удалось 🔥<br>Что я сделаю завтра:<br>Хочу сделать себе полный анализ по запуску и выявить что мне помогло сделать такой результат<br>Салават Юлаев / Локомотив (0:0)</div>
+<div class="msg-item"><span class="msg-time">21:52</span>Рефлексия дня<br>План: 200к<br>Факт:0<br>Осталось:200к<br>Победа дня: наконец то пошел прогресс по горячим🙏<br>Общие мысли: непривычно работать из дома, но при этом получилось вытащить пару потенциалов<br>Что я сделаю завтра: постараюсь отдохнуть набраться сил, что бы со следующей недели уже наконец то сдвинутся с 0<br>Фото: ностальгирую по Питеру😍</div>
+<div class="msg-item"><span class="msg-time">21:52</span>На самом деле не дошло до чего то уникального, отправил видео кругляш и сработало<br>Но уже думал отправить рубль на карту клиенту 😃</div>
+<div class="msg-item"><span class="msg-time">21:55</span>Спасибо 🙏</div></div>
+    
+    <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div><div class="msg-item">Утренний отчёт сдан вовремя. Вечерняя рефлексия есть. Зафиксировано 595 817 ₽ (59.6% плана) — уверенный прогресс. 6 сообщений за день — высокая активность.</div></div>
+  </div>
+</div><div class="card" id="d008">
+  <div class="card-hdr" onclick="toggle('d008')">
+    <div class="hdr-l">
+      <div class="day-num"><span class="n">13</span>апр</div>
+      <div class="card-info">
+        <h3>Понедельник · 13.04.2026</h3>
+        <div class="sub">✓ Утро · ✓ Рефлексия · 4 сообщ.</div>
+      </div>
+    </div>
+    <div class="hdr-r"><span class="fb done">1 000 000 ₽ ✓</span><span class="tog">▼</span></div>
+  </div>
+  <div class="card-body">
+    <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя · 11:50</div><div class="msg-item"><span class="msg-time">11:50</span>Доброе утро<br>Сегодня решил уделить время чтению, а именно прослушиванию аудиокниги<br>Нужно закончить начатое, еще давно начал читать книгу «Атомные привычки»<br>План на день: сделать 1-2 оплаты холодки</div></div>
+    <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня · 20:59–21:46</div><div class="mrow"><div class="m"><div class="ml">Факт</div><div class="mv a">1 000 000 ₽</div></div><div class="m"><div class="ml">% плана</div><div class="mv a">100.0%</div></div><div class="m"><div class="ml">+За день</div><div class="mv a">404 183 ₽</div></div></div><div class="msg-item"><span class="msg-time">20:59</span>Рефлексия дня<br>План 200к<br>Факт 19404<br>Осталось 180 596<br>Победа дня: по выходили игноры с горячих и нам удалось нормально пообщаться<br>Общие мысли дня: тяжеловато то что горячий запуск прошел лично у меня не очень хорошо и не так много закрытий, надеюсь в следующем будет лучше<br>Что я буду делать завтра: нужно обзванивать базу по новому продукту и закрывать их</div>
+<div class="msg-item"><span class="msg-time">21:46</span>Рефлексия дня:<br>План месяца: 1 000 000 рублей (500 000 рублей ✅)<br>Факт месяца: 605 000 рублей<br>Остаток: 395 000 рублей<br>Победа дня: сегодня пообщались с клиентом и настроили вместе ему биржу байбит, было принципиально важно ему это сделать и на радостях рассмотрели апгрейд 2.0<br>День прошел максимально позитивно, началось все с закрытых планов которые ставили на неделю<br>На следующую неделю планов не меньше, будем идти только вперед 🔥</div></div>
+    <div class="blk pu"><div class="blk-lbl"><span class="dot"></span>В течение дня · 11:47</div><div class="msg-item"><span class="msg-time">11:47</span>Сегодня утро было посвящено  любимым бьюти процедурам что бы подготовится к новой неделе<br>Планы на день: дожимать горячих и делать план по холодке</div></div>
+    <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div><div class="msg-item">Утренний отчёт сдан вовремя. Вечерняя рефлексия есть. План ЗАКРЫТ — 1 000 000 ₽ (100.0%). Цель достигнута. 4 сообщений за день — высокая активность.</div></div>
+  </div>
+</div><div class="card" id="d009">
+  <div class="card-hdr" onclick="toggle('d009')">
+    <div class="hdr-l">
+      <div class="day-num"><span class="n">14</span>апр</div>
+      <div class="card-info">
+        <h3>Вторник · 14.04.2026</h3>
+        <div class="sub">✓ Утро · ✓ Рефлексия · 3 сообщ.</div>
+      </div>
+    </div>
+    <div class="hdr-r"><span class="fb done">1 000 000 ₽ ✓</span><span class="tog">▼</span></div>
+  </div>
+  <div class="card-body">
+    <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя · 11:50</div><div class="msg-item"><span class="msg-time">11:50</span>Доброе утро всем<br>Сегодня день я начал традиционно с прослушивания подкаста<br>Комбинирую подкасты на темы психологии и продаж через день 🔥</div></div>
+    <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня · 21:47</div><div class="mrow"><div class="m"><div class="ml">Факт</div><div class="mv a">1 000 000 ₽</div></div><div class="m"><div class="ml">% плана</div><div class="mv a">100.0%</div></div></div><div class="msg-item"><span class="msg-time">21:47</span>План месяца: 1 000 000 рублей<br>Факт: 618 000 рублей<br>Осталось: 382 000 рублей<br>Победа дня: обошли все возможные барьеры по оплате через втб карту, лично звонил в поддержку банка, чтоб довести дело до заветного завершено<br>Выявил для себя что могу еще сильнее дожимать клиентов, появились новые идеи по дожимам<br>Что я сделаю завтра ?<br>Приступлю к холодке с новым подходом по обзвону</div></div>
+    <div class="blk pu"><div class="blk-lbl"><span class="dot"></span>В течение дня · 11:34</div><div class="msg-item"><span class="msg-time">11:34</span>Сегодня утро посвящено уже можно сказать любимому сериалу<br>Дойдя до 8го сезона мне стало грустно от того что он заканчивается<br>Смотрим сериал наполняется настроением<br>Планы на день: работать, звонить базу</div></div>
+    <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div><div class="msg-item">Утренний отчёт сдан вовремя. Вечерняя рефлексия есть. План ЗАКРЫТ — 1 000 000 ₽ (100.0%). Цель достигнута.</div></div>
+  </div>
+</div><div class="card" id="d010">
+  <div class="card-hdr" onclick="toggle('d010')">
+    <div class="hdr-l">
+      <div class="day-num"><span class="n">15</span>апр</div>
+      <div class="card-info">
+        <h3>Среда · 15.04.2026</h3>
+        <div class="sub">— Утро · ✓ Рефлексия · 3 сообщ.</div>
+      </div>
+    </div>
+    <div class="hdr-r"><span class="fb done">1 000 000 ₽ ✓</span><span class="tog">▼</span></div>
+  </div>
+  <div class="card-body">
+    
+    <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня · 11:48–21:56</div><div class="mrow"><div class="m"><div class="ml">Факт</div><div class="mv a">1 000 000 ₽</div></div><div class="m"><div class="ml">% плана</div><div class="mv a">100.0%</div></div></div><div class="msg-item"><span class="msg-time">11:48</span>Утро началось с просмотра сериала<br>Смотрю последний сезон настраиваемся на день<br>Планы на день: нужно звонить базу вытаскивать потенциалов по холодным, т.к горячие уже кто мог закрылся</div>
+<div class="msg-item"><span class="msg-time">21:24</span>Рефлексия дня:<br>План: 200к<br>Факт: 18612<br>Осталось: 181388<br>Победа дня: доделали таблицу по манифесту ✅<br>Общие мысли: день сегодня был посвящен больше оформлению и внесению данных, еще выяснила для себя что люди за 9900 прогрелись и можно с ними уже начинать более детально общаться<br>Что я буду делать завтра:<br>Буду обзванивать потенциалов 9900 которые сегодня мне написали что им актуально продление, и надо коснутся базу по фонде</div>
+<div class="msg-item"><span class="msg-time">21:56</span>План на месяц: 1 000 000 рублей<br>Факт месяца: 675 000 рублей<br>Осталась: 325 000 рублей<br>Победа дня: сегодня звонил не так много, но зато достаточно долго общался с клиентом который имел достаточно много страхов после не совсем удачного опыта<br>Поработали с психологией и дали шанс себе начать новый путь к инвестиционному успеху<br>Что я сделаю завтра:<br>Продолжу еще эффективнее выполнять свою работу</div></div>
+    
+    <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div><div class="msg-item">Утренний отчёт в этот день не зафиксирован. Вечерняя рефлексия есть. План ЗАКРЫТ — 1 000 000 ₽ (100.0%). Цель достигнута.</div></div>
+  </div>
+</div><div class="card" id="d011">
+  <div class="card-hdr" onclick="toggle('d011')">
+    <div class="hdr-l">
+      <div class="day-num"><span class="n">16</span>апр</div>
+      <div class="card-info">
+        <h3>Четверг · 16.04.2026</h3>
+        <div class="sub">✓ Утро · ✓ Рефлексия · 4 сообщ.</div>
+      </div>
+    </div>
+    <div class="hdr-r"><span class="fb done">1 000 000 ₽ ✓</span><span class="tog">▼</span></div>
+  </div>
+  <div class="card-body">
+    <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя · 11:25</div><div class="msg-item"><span class="msg-time">11:25</span>Доброе утро 👍🏼<br>Сегодня продолжаю прослушивание книги атомные привычки<br>Осталась крайняя глава и галочка поставлена<br>План на сегодня: сделать 1-2 оплаты</div></div>
+    <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня · 21:55–21:58</div><div class="mrow"><div class="m"><div class="ml">Факт</div><div class="mv a">1 000 000 ₽</div></div><div class="m"><div class="ml">% плана</div><div class="mv a">100.0%</div></div></div><div class="msg-item"><span class="msg-time">21:55</span>План на месяц: 1 000 000 рублей<br>Факт месяца: 679 000 рублей<br>Осталось: 321 000 рублей<br>Сегодня день прошел быстро но зато с результатом хоть и не большим, с утра проснулся максимально разбитым, вероятнее всего продуло так как тепло в эту весну так и не может наступить в полную силу<br>Победа дня: выжал из себя все силы и обзвонил лидов которые ставил себе планом на день<br>Берегите здоровье, весеннее тепло коварное 👍🏼</div>
+<div class="msg-item"><span class="msg-time">21:58</span>Рефлексия дня:<br>План: 200к<br>Факт: 18612<br>Осталось: 181388<br>Победа дня: сегодня ничего что хотелось бы выделить, прозвонила потенциалов на оплату (повторное касание вроде как пока что живые)<br>Общие мысли: было очень много людей которые постоянно жаловались то что у них ничего не получается хотя это они по факту допускали ошибки но этого не признавали<br>Что я буду делать завтра:<br>Хочется уже наконец закрыть клиентов нужно придумывать инфоповодов и дожимать их</div></div>
+    <div class="blk pu"><div class="blk-lbl"><span class="dot"></span>В течение дня · 11:06</div><div class="msg-item"><span class="msg-time">11:06</span>Сегодня утро было посвящено английскому<br>123 день 🥳<br>Планы на день, звонить базу</div></div>
+    <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div><div class="msg-item">Утренний отчёт сдан вовремя. Вечерняя рефлексия есть. План ЗАКРЫТ — 1 000 000 ₽ (100.0%). Цель достигнута. 4 сообщений за день — высокая активность.</div></div>
+  </div>
+</div><div class="card" id="d012">
+  <div class="card-hdr" onclick="toggle('d012')">
+    <div class="hdr-l">
+      <div class="day-num"><span class="n">17</span>апр</div>
+      <div class="card-info">
+        <h3>Пятница · 17.04.2026</h3>
+        <div class="sub">✓ Утро · ✓ Рефлексия · 4 сообщ.</div>
+      </div>
+    </div>
+    <div class="hdr-r"><span class="fb done">1 000 000 ₽ ✓</span><span class="tog">▼</span></div>
+  </div>
+  <div class="card-body">
+    <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя · 11:44</div><div class="msg-item"><span class="msg-time">11:44</span>Доброе утро<br>День начался традиционных прослушиваний подкастов<br>Сегодня слушал подкаст, направленный на улучшение выявление потребностей для клиента, а также, прослушал уроки, как повторно звонить клиенту и ему не надоедать</div></div>
+    <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня · 21:48–21:52</div><div class="mrow"><div class="m"><div class="ml">Факт</div><div class="mv a">1 000 000 ₽</div></div><div class="m"><div class="ml">% плана</div><div class="mv a">100.0%</div></div></div><div class="msg-item"><span class="msg-time">21:48</span>Рефлексия дня:<br>План: 200к<br>Факт: 18612<br>Осталось: 181388<br>Победа дня: пережили эту неделю😃<br>Общие мысли: здорово то что каждый раз придумывается что то новое для клиентов в плане оплаты<br>Что я буду делать завтра:<br>Отдыхать набираться сил на новую неделю, и есть где пару потенциалов которые хотели созвонится на выходных</div>
+<div class="msg-item"><span class="msg-time">21:52</span>Рефлексия дня:<br>План на месяц: 1 000 000 рублей<br>Факт месяца: 694 000 рублей<br>Осталось: 306 000 рублей<br>Победа дня<br>Достучался до своего тотального игнорщика, приняли решение сделать еще один созвон и далее уже принимать решение по программе, но уже рад, что мы хотя бы поговорили<br>Сейчас в предвкушении выходных дорабатываю с потенциалами<br>Всем хороших выходных</div></div>
+    <div class="blk pu"><div class="blk-lbl"><span class="dot"></span>В течение дня · 11:46</div><div class="msg-item"><span class="msg-time">11:46</span>Начинаем утро как обычно, с просмотра сериала<br>Планы на день: работать звонить закрывать 😃</div></div>
+    <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div><div class="msg-item">Утренний отчёт сдан вовремя. Вечерняя рефлексия есть. План ЗАКРЫТ — 1 000 000 ₽ (100.0%). Цель достигнута. 4 сообщений за день — высокая активность.</div></div>
+  </div>
+</div><div class="card" id="d013">
+  <div class="card-hdr" onclick="toggle('d013')">
+    <div class="hdr-l">
+      <div class="day-num"><span class="n">20</span>апр</div>
+      <div class="card-info">
+        <h3>Понедельник · 20.04.2026</h3>
+        <div class="sub">✓ Утро · ✓ Рефлексия · 3 сообщ.</div>
+      </div>
+    </div>
+    <div class="hdr-r"><span class="fb done">1 000 000 ₽ ✓</span><span class="tog">▼</span></div>
+  </div>
+  <div class="card-body">
+    <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя · 11:06–11:25</div><div class="msg-item"><span class="msg-time">11:06</span>Доброе утро<br>Сегодня у нас с мужем одинаковое утро<br>Обычно я смотрю сериал а он всякие интервью<br>Решила вместе с ним посмотреть ролик посвящений налогам<br>Планы на день: звонить закрывать</div>
+<div class="msg-item"><span class="msg-time">11:25</span>Доброе утро<br>Утро началось с прослушивания подкаста<br>Сегодня повесткой дня была тема направленная на кинетический интеллект<br>План на день: сделать 1-2 оплаты</div></div>
+    <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня · 21:08</div><div class="mrow"><div class="m"><div class="ml">Факт</div><div class="mv a">1 000 000 ₽</div></div><div class="m"><div class="ml">% плана</div><div class="mv a">100.0%</div></div></div><div class="msg-item"><span class="msg-time">21:08</span>Рефлексия дня<br>План месяца: 1 000 000 рублей<br>Факт месяца: 709 000 рублей<br>Осталось: 291 000 рублей<br>Победа дня: провел анализ по продажам на каждой неделе<br>Сегодня день прошел аналитически, вообще люблю задачи с цифрами и на аналитику, все таки даже в продажах образование инженера очень кстати 😃<br>Сделаны выводы как личные так и общие, так что с каждым разом будем совершенствоваться и находить новые ключи к задачам<br>Что я сделаю завтра:<br>Обработаю горячих и приступлю к холодным 🔥</div></div>
+    
+    <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div><div class="msg-item">Утренний отчёт сдан вовремя. Вечерняя рефлексия есть. План ЗАКРЫТ — 1 000 000 ₽ (100.0%). Цель достигнута.</div></div>
+  </div>
+</div><div class="card" id="d014">
+  <div class="card-hdr" onclick="toggle('d014')">
+    <div class="hdr-l">
+      <div class="day-num"><span class="n">21</span>апр</div>
+      <div class="card-info">
+        <h3>Вторник · 21.04.2026</h3>
+        <div class="sub">✓ Утро · ✓ Рефлексия · 4 сообщ.</div>
+      </div>
+    </div>
+    <div class="hdr-r"><span class="fb done">1 000 000 ₽ ✓</span><span class="tog">▼</span></div>
+  </div>
+  <div class="card-body">
+    <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя · 11:59</div><div class="msg-item"><span class="msg-time">11:59</span>Доброе утро<br>Сегодня утро началось с прослушивания книги, а именно продолжение «Атомные привычки»<br>Осталось 25 минут активного слушания, появились крутые инсайты, напишу о них позже<br>План на день: дожать горячих и сделать холодные оплаты</div></div>
+    <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня · 21:42–21:52</div><div class="mrow"><div class="m"><div class="ml">Факт</div><div class="mv a">1 000 000 ₽</div></div><div class="m"><div class="ml">% плана</div><div class="mv a">100.0%</div></div></div><div class="msg-item"><span class="msg-time">21:42</span>Рефлексия дня:<br>План: 200к<br>Факт: 36612<br>Осталось: 163388<br>Победа дня: вытащила потенциала на оплату<br>Общие мысли: не было сегодня каких то глобальных мыслей, ждем реалити что бы протестить новую стратегию<br>Что я буду делать завтра:<br>Нужно больше звонить, по базам, вытаскивать потенциалов и лучше всего поддерживать с ними конект даже если они сливаются</div>
+<div class="msg-item"><span class="msg-time">21:52</span>Рефлексия дня<br>План месяца: 1 000 000 рублей<br>Факт месяца: 709 000 рублей<br>Осталось: 291 000 рублей<br>Победа дня: вытащил клиента с игнора и принял с нее оплату<br>Сегодня день проходил не совсем привычно, но типично для дня когда вчера была хоть и небольшой запуск, работал хаотично, то по горячим, то по холодным<br>Заказов вышло не много поэтому это дает возможности более сильнее сработать на детальную проработку вопросов с клиентом<br>Что я сделаю завтра:<br>На завтра я готов всецело посвятить время холодке</div></div>
+    <div class="blk pu"><div class="blk-lbl"><span class="dot"></span>В течение дня · 11:25</div><div class="msg-item"><span class="msg-time">11:25</span>Сегодня утро посвящено Английскому языку<br>Прошла несколько уроков<br>Планы на день: дорабатывать горячих дожимать потенциалов</div></div>
+    <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div><div class="msg-item">Утренний отчёт сдан вовремя. Вечерняя рефлексия есть. План ЗАКРЫТ — 1 000 000 ₽ (100.0%). Цель достигнута. 4 сообщений за день — высокая активность.</div></div>
+  </div>
+</div><div class="card" id="d015">
+  <div class="card-hdr" onclick="toggle('d015')">
+    <div class="hdr-l">
+      <div class="day-num"><span class="n">22</span>апр</div>
+      <div class="card-info">
+        <h3>Среда · 22.04.2026</h3>
+        <div class="sub">✓ Утро · ✓ Рефлексия · 4 сообщ.</div>
+      </div>
+    </div>
+    <div class="hdr-r"><span class="fb done">1 000 000 ₽ ✓</span><span class="tog">▼</span></div>
+  </div>
+  <div class="card-body">
+    <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя · 11:14–11:44</div><div class="msg-item"><span class="msg-time">11:14</span>Доброе утро<br>Вчера начала слушать аудио книгу<br>По правилам деловой переписки<br>Есть пару интересных моментов<br>Планы на день: звонить, вытаскивать потенциалов</div>
+<div class="msg-item"><span class="msg-time">11:44</span>Доброе утро 🔥<br>Мое утро началась с прописывания планов и целей на май месяц<br>Ранее всегда делал постановку целей раз в год в конце декабря, но понял что намного эффективнее когда ставишь, может не сильно грандиозные, но зато достигаемые цели на каждый месяц<br>План на сегодня:<br>Выполнить план 👍🏼</div></div>
+    <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня · 21:14–21:15</div><div class="mrow"><div class="m"><div class="ml">Факт</div><div class="mv a">1 000 000 ₽</div></div><div class="m"><div class="ml">% плана</div><div class="mv a">100.0%</div></div></div><div class="msg-item"><span class="msg-time">21:14</span>Рефлексия дня<br>План на месяц: 1 000 000 рублей<br>Факт: 710 000 рублей<br>Осталось: 290 000 рублей<br>Победа дня: провел мини-диалностику клиенту, посмотрим как это сработает на дистанции<br>Находится пока что в глубоком непонимании с легким неверием в себя, поэтому вдвойне интересно привести его к результату<br>Что я сделаю завтра ?<br>Отработаю максимально горячих и приступлю к холодным<br>Дикий попугай в Стамбуле, говорят что они там появились когда корабль перевозивший попугаев потерпел крушение и выжило порядка 100 особей, которые адаптировались под дикую природу</div>
+<div class="msg-item"><span class="msg-time">21:15</span>Рефлексия дня:<br>План: 200к<br>Факт: 28612<br>Осталось: 163388<br>Победа дня: нет ничего что можно выделить<br>Общие мысли: ждем запуск, надеюсь будут хорошие цифры, очень сильно тянутся потенциалы приходиться делать прям много касаний что бы довести их до следующего этапа<br>Что я буду делать завтра:<br>Завтра будем закрывать горячих</div></div>
+    
+    <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div><div class="msg-item">Утренний отчёт сдан вовремя. Вечерняя рефлексия есть. План ЗАКРЫТ — 1 000 000 ₽ (100.0%). Цель достигнута. 4 сообщений за день — высокая активность.</div></div>
+  </div>
+</div><div class="card" id="d016">
+  <div class="card-hdr" onclick="toggle('d016')">
+    <div class="hdr-l">
+      <div class="day-num"><span class="n">23</span>апр</div>
+      <div class="card-info">
+        <h3>Четверг · 23.04.2026</h3>
+        <div class="sub">— Утро · ✓ Рефлексия · 1 сообщ.</div>
+      </div>
+    </div>
+    <div class="hdr-r"><span class="fb hi">710 000 ₽</span><span class="tog">▼</span></div>
+  </div>
+  <div class="card-body">
+    
+    <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня · 21:56</div><div class="mrow"><div class="m"><div class="ml">Факт</div><div class="mv a">710 000 ₽</div></div><div class="m"><div class="ml">% плана</div><div class="mv ">71.0%</div></div></div><div class="msg-item"><span class="msg-time">21:56</span>План: 1кк<br>Факт: 710к<br>Осталось: 290к<br>Победа дня: проанализировал и поставил себе четкую цель на этот запуск<br>Мысли: так как заказов упало немного, решил уделить особое внимание горячим. Поговорил с одним клиентом 45 минут, ответил на все вопросы, отработал возражения и как итог принял оплату<br>Что я сделаю завтра?<br>Продолжу работать детально с каждым клиентом, как по холодным, так и по горячим<br>И достигать своих целей</div></div>
+    
+    <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div><div class="msg-item">Утренний отчёт в этот день не зафиксирован. Вечерняя рефлексия есть. Зафиксировано 710 000 ₽ (71.0% плана) — уверенный прогресс. Одно сообщение — краткий контакт с командой.</div></div>
+  </div>
+</div><div class="card" id="d017">
+  <div class="card-hdr" onclick="toggle('d017')">
+    <div class="hdr-l">
+      <div class="day-num"><span class="n">24</span>апр</div>
+      <div class="card-info">
+        <h3>Пятница · 24.04.2026</h3>
+        <div class="sub">✓ Утро · ✓ Рефлексия · 4 сообщ.</div>
+      </div>
+    </div>
+    <div class="hdr-r"><span class="fb hi">200 000 ₽</span><span class="tog">▼</span></div>
+  </div>
+  <div class="card-body">
+    <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя · 11:23–11:54</div><div class="msg-item"><span class="msg-time">11:23</span>Доброе утро<br>Начала смотреть новый сериал<br>Кинопоиск не дает делать скриншот, пока что ничего не понятно, но надеюсь понравится<br>Планы на день: дожимать горячих</div>
+<div class="msg-item"><span class="msg-time">11:54</span>Доброе утро<br>Сегодня утро начал с прослушивания новой книги, а именно «Думай медленно, решай быстро»<br>Тема психологии мне особенно интересна, так как считаю что это основа продаж</div></div>
+    <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня · 21:21–21:28</div><div class="mrow"><div class="m"><div class="ml">Факт</div><div class="mv a">200 000 ₽</div></div><div class="m"><div class="ml">% плана</div><div class="mv ">20.0%</div></div></div><div class="msg-item"><span class="msg-time">21:21</span>План 1 кк<br>Факт 710 к<br>Осталось 290 к<br>Победа дня: дожал горячую на которую ставил меньше всего, двигаемся далее, иду потихоньку к своей цели о которой напишу чуть позднее<br>Мысли: на самом деле на этой неделе достаточно много мыслей пролетает в голове, но все они с позитивным исходом, есть идеи которые хочется реализовать<br>Что я сделаю завтра:<br>Продолжу выполнять свою работу лучше чем вчера 🔥<br>Ледоход в Питере 🧊</div>
+<div class="msg-item"><span class="msg-time">21:28</span>Рефлексия дня:<br>План: 200к<br>Факт: 117 562<br>Осталось: 82 438<br>Победа дня: наконец то первая большая продажа по холодке<br>Общие мысли: сегодня попалась клиентка которой были важны технические моменты, а я в них плаваю, поняла что нужно половить именно техническую часть продуктов<br>Что я буду делать завтра:<br>Нужно дожимать горячих, и отдохнуть перед новой неделей<br>Фото: Питер, Петропавловская крепость</div></div>
+    
+    <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div><div class="msg-item">Утренний отчёт сдан вовремя. Вечерняя рефлексия есть. Результат 200 000 ₽ (20.0% плана) — есть задел, нужно ускоряться. 4 сообщений за день — высокая активность.</div></div>
+  </div>
+</div><div class="card" id="d018">
+  <div class="card-hdr" onclick="toggle('d018')">
+    <div class="hdr-l">
+      <div class="day-num"><span class="n">27</span>апр</div>
+      <div class="card-info">
+        <h3>Понедельник · 27.04.2026</h3>
+        <div class="sub">✓ Утро · ✓ Рефлексия · 4 сообщ.</div>
+      </div>
+    </div>
+    <div class="hdr-r"><span class="fb hi">830 000 ₽</span><span class="tog">▼</span></div>
+  </div>
+  <div class="card-body">
+    <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя · 11:52–11:53</div><div class="msg-item"><span class="msg-time">11:52</span>Доброе утро<br>Утро началось с просмотра сериала<br>Кинопоиск почему-то не дает делать скрины именно кадров серии 🤔<br>Планы на день: нужно искать потенциалов по холодке</div>
+<div class="msg-item"><span class="msg-time">11:53</span>Доброе утро<br>Мое утро началось с прослушивания аудиокниги «Думай медленно, решай быстро»<br>Даю себе установки на крайнюю неделю апреля</div></div>
+    <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня · 21:50–21:59</div><div class="mrow"><div class="m"><div class="ml">Факт</div><div class="mv a">830 000 ₽</div></div><div class="m"><div class="ml">% плана</div><div class="mv ">83.0%</div></div></div><div class="msg-item"><span class="msg-time">21:50</span>Рефлексия дня<br>План на месяц: 1 кк<br>Факт: 830к<br>Осталось: 170к<br>Победа дня<br>Довел конверсию до 100%<br>На самом деле, раньше всегда задумывался, а возможно ли вообще довести запуск до 100%<br>И казалось, что это невозможно, ведь всегда найдётся клиент который либо не ответит либо не оплатит<br>Закрыв 8/10 с клиентов принципиально важно было достучаться до этих двух игноров, звонки через каждые 3-4 часа, сообщения и тд привели к тому что хотел<br>Что я сделаю завтра:<br>Продолжу выполнять свою работу лучше чем сегодня<br>На фото город Аланья, с высоты 10 км</div>
+<div class="msg-item"><span class="msg-time">21:59</span>Рефлексия дня:<br>План: 200к<br>Факт: 117 562<br>Осталось: 82 438<br>Победа дня: второе место по горячим<br>Общие мысли: не могу выделить что то конкретное, закончились потенциалы по холодным нужно звонить базу<br>Что я буду делать завтра:<br>Нужно обзвонить новых лидов вытащить по больше потенциалов</div></div>
+    
+    <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div><div class="msg-item">Утренний отчёт сдан вовремя. Вечерняя рефлексия есть. Зафиксировано 830 000 ₽ (83.0% плана) — уверенный прогресс. 4 сообщений за день — высокая активность.</div></div>
+  </div>
+</div><div class="card" id="d019">
+  <div class="card-hdr" onclick="toggle('d019')">
+    <div class="hdr-l">
+      <div class="day-num"><span class="n">28</span>апр</div>
+      <div class="card-info">
+        <h3>Вторник · 28.04.2026</h3>
+        <div class="sub">✓ Утро · ✓ Рефлексия · 5 сообщ.</div>
+      </div>
+    </div>
+    <div class="hdr-r"><span class="fb hi">200 000 ₽</span><span class="tog">▼</span></div>
+  </div>
+  <div class="card-body">
+    <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя · 11:30–11:32</div><div class="msg-item"><span class="msg-time">11:30</span>Доброе утро, оно начинается с сериала, и сегодня я встала немного позже чем обычно поэтому времени на все не так много<br>Планы на день: звонить закрывать сделки</div>
+<div class="msg-item"><span class="msg-time">11:32</span>Доброе утро<br>Сегодня утро начал с просмотра фильма «Бесславные ублюдки»</div></div>
+    <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня · 21:47–21:57</div><div class="mrow"><div class="m"><div class="ml">Факт</div><div class="mv a">200 000 ₽</div></div><div class="m"><div class="ml">% плана</div><div class="mv ">20.0%</div></div></div><div class="msg-item"><span class="msg-time">21:47</span>Рефлексия дня<br>План: 1 кк<br>Факт: 840 к<br>Осталась: 160к<br>Победа дня:<br>Провел все запланированные стс, впереди еще достаточно много назначений, не может не радовать такое количество учеников, которые ждут твоего звонка<br>Что я сделаю завтра ?<br>Продолжу выполнять свою работу</div>
+<div class="msg-item"><span class="msg-time">21:57</span>Рефлексия дня:<br>План: 200к<br>Факт: 122154<br>Осталось: 78756<br>Победа дня: начали обрабатывать новую воронку<br>Общие мысли: тяжеловато сегодня выходили на контакт Лиды которые сами же оплатили мини обучение, нужно как то заинтересовать их на результат<br>Что я буду делать завтра:<br>Продолжим обрабатывать воронку</div></div>
+    <div class="blk pu"><div class="blk-lbl"><span class="dot"></span>В течение дня · 13:40</div><div class="msg-item"><span class="msg-time">13:40</span>Да, четкий фильм</div></div>
+    <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div><div class="msg-item">Утренний отчёт сдан вовремя. Вечерняя рефлексия есть. Результат 200 000 ₽ (20.0% плана) — есть задел, нужно ускоряться. 5 сообщений за день — высокая активность.</div></div>
+  </div>
+</div><div class="card" id="d020">
+  <div class="card-hdr" onclick="toggle('d020')">
+    <div class="hdr-l">
+      <div class="day-num"><span class="n">29</span>апр</div>
+      <div class="card-info">
+        <h3>Среда · 29.04.2026</h3>
+        <div class="sub">— Утро · ✓ Рефлексия · 1 сообщ.</div>
+      </div>
+    </div>
+    <div class="hdr-r"><span class="fb hi">880 000 ₽</span><span class="tog">▼</span></div>
+  </div>
+  <div class="card-body">
+    
+    <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня · 21:46</div><div class="mrow"><div class="m"><div class="ml">Факт</div><div class="mv a">880 000 ₽</div></div><div class="m"><div class="ml">% плана</div><div class="mv ">88.0%</div></div></div><div class="msg-item"><span class="msg-time">21:46</span>Рефлексия дня:<br>План на месяц: 1 кк<br>Факт: 880к<br>Осталось: 120к💥💥💥💥<br>Победа дня<br>Сегодня дожал клиента с которым созванивались каждый день в течение недели<br>Чувствуется конец месяца по динамике закрытий, очень радует что идет такой положительный хаос<br>Что я сделаю завтра ?<br>Выжимать всех своих горячих 💥</div></div>
+    
+    <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div><div class="msg-item">Утренний отчёт в этот день не зафиксирован. Вечерняя рефлексия есть. Зафиксировано 880 000 ₽ (88.0% плана) — уверенный прогресс. Одно сообщение — краткий контакт с командой.</div></div>
+  </div>
+</div><div class="card" id="d021">
+  <div class="card-hdr" onclick="toggle('d021')">
+    <div class="hdr-l">
+      <div class="day-num"><span class="n">30</span>апр</div>
+      <div class="card-info">
+        <h3>Четверг · 30.04.2026</h3>
+        <div class="sub">✓ Утро · ✓ Рефлексия · 4 сообщ.</div>
+      </div>
+    </div>
+    <div class="hdr-r"><span class="fb hi">200 000 ₽</span><span class="tog">▼</span></div>
+  </div>
+  <div class="card-body">
+    <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя · 11:02–11:58</div><div class="msg-item"><span class="msg-time">11:02</span>Доброе утро, сегодня начинаем утро с английского языка<br>Планы на день: дожать потенциалов которые тянулись до конца месяца и допить план по холодным</div>
+<div class="msg-item"><span class="msg-time">11:58</span>Доброе утро<br>Утро началось сегодня еще в 7 часов, нужно было съездить по личным делам<br>Сейчас в торопях мчим на работу, сегодня самый плотный день по стс, поэтому нужно выжать максимум в крайний день месяца</div></div>
+    <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня · 21:55–21:57</div><div class="mrow"><div class="m"><div class="ml">Факт</div><div class="mv a">200 000 ₽</div></div><div class="m"><div class="ml">% плана</div><div class="mv ">20.0%</div></div></div><div class="msg-item"><span class="msg-time">21:55</span>Рефлексия дня:<br>План: 200к<br>Факт: 225576<br>Осталось: 0<br>Победа дня: выполнила личный план продаж<br>Общие мысли: хотелось закрыть план, мысли материализовались<br>Что я буду делать завтра:<br>Сегодня запуск буду работать с горячими<br>И есть пару созвонов с клиентами</div>
+<div class="msg-item"><span class="msg-time">21:57</span>Рефлексия дня<br>План на месяц: 1кк<br>Факт: 1,07кк<br>Осталось: 0<br>Победа дня:<br>Выполнил свой второй план, продолжаю дальше выжимать потенциалов, что поместить всех в апрель месяц<br>Бегу отрабатывать горячих 🔥</div></div>
+    
+    <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div><div class="msg-item">Утренний отчёт сдан вовремя. Вечерняя рефлексия есть. Результат 200 000 ₽ (20.0% плана) — есть задел, нужно ускоряться. 4 сообщений за день — высокая активность.</div></div>
+  </div>
+</div><div class="week"><span class="week-lbl">Май 2026</span><div class="week-line"></div></div><div class="card" id="d022">
+  <div class="card-hdr" onclick="toggle('d022')">
+    <div class="hdr-l">
+      <div class="day-num"><span class="n">4</span>май</div>
+      <div class="card-info">
+        <h3>Понедельник · 04.05.2026</h3>
+        <div class="sub">— Утро · ✓ Рефлексия · 3 сообщ.</div>
+      </div>
+    </div>
+    <div class="hdr-r"><span class="fb hi">870 000 ₽</span><span class="tog">▼</span></div>
+  </div>
+  <div class="card-body">
+    
+    <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня · 21:41–21:51</div><div class="mrow"><div class="m"><div class="ml">Факт</div><div class="mv a">870 000 ₽</div></div><div class="m"><div class="ml">% плана</div><div class="mv ">87.0%</div></div></div><div class="msg-item"><span class="msg-time">21:41</span>Рефлекcия дня:<br>План месяца: 250к<br>Факт месяца: 0<br>Осталось: 250к<br>Победы<br>дня: давно хотели в таблицу с манифестом добавить столбец мотивация или горячий что бы было проще отслеживать, сегодня реализовали<br>Общие мысли о прошедшем дне: очень плохо выходят на связь люди с крайнего запуска, уже делала несколько касаний и все равно не выходят на связь и как же можно было умудриться заболеть и проболеть все выходные<br>Что я сделаю завтра, чтобы стать лучше?<br>Пока к сожалению голос мне не позволяет звонить, надеюсь завтра будет по лучше и смогу позвонить хотя бы паре человек<br>Фото: просто очень красиво распустилось дерево рядом с домом</div>
+<div class="msg-item"><span class="msg-time">21:51</span>Рефлексия дня<br>План на месяц: 1кк<br>Факт месяца: 130к<br>Осталось: 870к<br>Победа дня<br>Вытащил игноров на назначение стс<br>Каждый лид особенно дорог, а когда он еще и назначается на стс то тем более, за каждого лида приходится хвататься зубами, чтоб вывести его сначала на созвон и далее уже на оплату<br>Завтра планирую уже переходить на обзвон базы в параллель стс</div></div>
+    <div class="blk pu"><div class="blk-lbl"><span class="dot"></span>В течение дня · 11:42</div><div class="msg-item"><span class="msg-time">11:42</span>Добро утро<br>Утро началось с анализа и постановки новых целей на   май месяц, особенное время для меня, так как в первые дни месяца внимательно прокручиваю план и все возможные действия, которые приведут к результату</div></div>
+    <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div><div class="msg-item">Утренний отчёт в этот день не зафиксирован. Вечерняя рефлексия есть. Зафиксировано 870 000 ₽ (87.0% плана) — уверенный прогресс.</div></div>
+  </div>
 </div>
-
-<script>
-function toggle(id){const c=document.getElementById(id);c.classList.toggle('open')}
-</script>
+<div class="final">
+  <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#aab0c0;margin-bottom:8px">Итоговый вывод по менеджеру</div>
+  <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:22px;line-height:1.3">
+    Сергей Кириллов — апрель–май 2026<br>
+    🥈 100.0% · 1 000 000 ₽
+  </div>
+  <div class="final-grid">
+    <div class="fb2"><h4>Статистика</h4><ul>
+      <li>Активных дней: 23</li>
+      <li>Всего сообщений: 87</li>
+      <li>Утренних отчётов: 16 из 23</li>
+      <li>Вечерних рефлексий: 22 из 23</li>
+      <li>Лучший день: 13.04 — 1 000 000 ₽</li>
+    </ul></div>
+    <div class="fb2"><h4>Результаты</h4><ul>
+      <li>План: 1 000 000 ₽</li>
+      <li>Факт (макс): 1 000 000 ₽</li>
+      <li>Выполнение: 100.0%</li>
+      <li>✅ ПЛАН ЗАКРЫТ</li>
+    </ul></div>
+  </div>
+</div>
+</div>
+<footer>Журнал обновлён 07.05.2026 18:57 · Путь 101% 2026</footer>
+<script>function toggle(id){const c=document.getElementById(id);c.classList.toggle('open')}</script>
 </body>
 </html>

@@ -18,8 +18,13 @@ from html import escape
 try:
     from bs4 import BeautifulSoup
 except ImportError:
-    print("Установи зависимость: pip install beautifulsoup4")
+    print("Install: pip install beautifulsoup4")
     sys.exit(1)
+
+# Fix Windows console encoding
+if sys.platform == 'win32':
+    import io
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 
 # ── Пути ─────────────────────────────────────────────────────────────────────
 
@@ -659,7 +664,7 @@ def main():
     for name, cfg in MANAGERS.items():
         days_data = dict(grouped.get(name, {}))
         if not days_data:
-            print(f"  ⚠  {name}: сообщений не найдено — пропускаю")
+            print(f"  !! {name}: сообщений не найдено -- пропускаю")
             continue
 
         total = sum(len(v) for v in days_data.values())
@@ -671,7 +676,7 @@ def main():
         max_fact = max(day_amounts.values()) if day_amounts else 0
 
         managers_stats[name] = {'days': len(days_data), 'total': total, 'max_fact': max_fact}
-        print(f"  ✓  {name}: {len(days_data)} дней · {total} сообщ. · факт {fmt(max_fact) if max_fact else '—'}")
+        print(f"  OK {name}: {len(days_data)} дней, {total} сообщ., факт {fmt(max_fact) if max_fact else '---'}")
 
         html = make_journal(name, cfg, days_data)
         with open(os.path.join(OUTPUT_DIR, cfg['file']), 'w', encoding='utf-8') as f:
@@ -681,7 +686,7 @@ def main():
     index_html = make_index(managers_stats)
     with open(os.path.join(OUTPUT_DIR, 'index.html'), 'w', encoding='utf-8') as f:
         f.write(index_html)
-    print("  ✓  index.html обновлён")
+    print("  OK index.html обновлён")
 
     # 5. Пуш на GitHub
     print("\n  Публикую на GitHub Pages...")
@@ -690,7 +695,7 @@ def main():
     os.system('git add -A')
     ret = os.system(f'git commit -m "Journals update {ts}" --allow-empty')
     os.system('git push')
-    print(f"\n  ✅ Готово! Сайт: https://menbestnet-oss.github.io/put-101-2026/")
+    print(f"\n  READY! Сайт: https://menbestnet-oss.github.io/put-101-2026/")
     print(f"  ⏱  GitHub Pages обновляется 1–2 минуты после пуша\n")
 
 

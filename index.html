@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Путь 101% 2026 — Журналы команды</title>
+<title>Путь 101% 2026 — Команда</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0d0d1a;color:#e8e8f0;min-height:100vh}
@@ -12,272 +12,193 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0d0d1a;color:#e8e8f
 .hero h1{font-size:clamp(28px,5vw,48px);font-weight:900;color:#fff;line-height:1.15;margin-bottom:10px}
 .hero-sub{font-size:16px;color:#9999cc;margin-bottom:32px}
 .hero-stats{display:flex;gap:32px;justify-content:center;flex-wrap:wrap}
-.hs{text-align:center}
-.hs .v{font-size:28px;font-weight:800;color:#fff}
-.hs .l{font-size:11px;color:#666;text-transform:uppercase;letter-spacing:1.5px;margin-top:2px}
-
+.hs .v{font-size:28px;font-weight:800;color:#fff;display:block}
+.hs .l{font-size:11px;color:#666;text-transform:uppercase;letter-spacing:1.5px;margin-top:2px;display:block}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;padding:40px 24px;max-width:1200px;margin:0 auto}
-
 .card{background:#16162a;border:1px solid rgba(255,255,255,.07);border-radius:16px;overflow:hidden;transition:transform .2s,box-shadow .2s;text-decoration:none;display:block;color:inherit}
 .card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.4)}
-.card-top{padding:24px 20px 16px;display:flex;align-items:flex-start;gap:14px}
+.card-top{padding:22px 20px 14px;display:flex;align-items:flex-start;gap:14px}
 .av{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:#fff;flex-shrink:0}
-.av.gold{background:linear-gradient(135deg,#f5c842,#e8a000)}
-.av.silver{background:linear-gradient(135deg,#aab0c0,#7a8090)}
-.av.bronze{background:linear-gradient(135deg,#cd7f32,#a05a1a)}
-.av.teal{background:linear-gradient(135deg,#00c9a7,#007a65)}
-.av.green{background:linear-gradient(135deg,#22c55e,#16a34a)}
-.av.blue{background:linear-gradient(135deg,#3b82f6,#1d4ed8)}
-.av.orange{background:linear-gradient(135deg,#f97316,#c2410c)}
-.av.purple{background:linear-gradient(135deg,#a855f7,#7c3aed)}
-.av.darkgray{background:linear-gradient(135deg,#64748b,#334155)}
-
-.card-meta{flex:1;min-width:0}
+.card-meta{flex:1}
 .card-name{font-size:17px;font-weight:700;color:#fff;line-height:1.2;margin-bottom:4px}
-.card-role{font-size:12px;color:#666;margin-bottom:8px}
+.card-role{font-size:12px;color:#555;margin-bottom:8px}
 .badge-sm{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1px;padding:3px 8px;border-radius:20px;text-transform:uppercase}
-.badge-sm.gold{background:#f5c84222;color:#f5c842;border:1px solid #f5c84244}
-.badge-sm.silver{background:#aab0c022;color:#aab0c0;border:1px solid #aab0c044}
-.badge-sm.bronze{background:#cd7f3222;color:#cd7f32;border:1px solid #cd7f3244}
-.badge-sm.teal{background:#00c9a722;color:#00c9a7;border:1px solid #00c9a744}
-.badge-sm.green{background:#22c55e22;color:#22c55e;border:1px solid #22c55e44}
-.badge-sm.blue{background:#3b82f622;color:#3b82f6;border:1px solid #3b82f644}
-.badge-sm.orange{background:#f9731622;color:#f97316;border:1px solid #f9731644}
-.badge-sm.purple{background:#a855f722;color:#a855f7;border:1px solid #a855f744}
-.badge-sm.darkgray{background:#64748b22;color:#94a3b8;border:1px solid #64748b44}
-
 .card-body{padding:0 20px 20px}
-.card-nums{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.card-nums{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
 .cn-item{background:#0d0d1a;border-radius:8px;padding:8px 10px}
-.cn-val{font-size:16px;font-weight:800;color:#fff}
-.cn-val.g{color:#22c55e}
-.cn-val.r{color:#ef4444}
-.cn-val.o{color:#f97316}
-.cn-val.y{color:#f5c842}
+.cn-val{font-size:14px;font-weight:800;color:#fff}
 .cn-lbl{font-size:10px;color:#555;text-transform:uppercase;letter-spacing:1px;margin-top:1px}
-
 .prog-bar{height:6px;background:#1e1e35;border-radius:3px;overflow:hidden;margin-bottom:6px}
-.prog-fill{height:100%;border-radius:3px;transition:width .6s}
+.prog-fill{height:100%;border-radius:3px}
 .prog-info{display:flex;justify-content:space-between;font-size:11px;color:#555}
-
-.card-quote{font-size:12px;color:#888;font-style:italic;border-left:2px solid #333;padding-left:10px;margin-top:12px;line-height:1.5}
-
-.place-badge{position:absolute;top:16px;right:16px;font-size:20px}
-.card-top{position:relative}
-
 footer{text-align:center;padding:32px 24px;font-size:12px;color:#333;border-top:1px solid #111}
 </style>
 </head>
 <body>
-
 <div class="hero">
-  <div class="hero-tag">Апрель 2026</div>
+  <div class="hero-tag">Апрель–Май 2026</div>
   <h1>Путь 101% 2026</h1>
-  <div class="hero-sub">Личные журналы команды — рефлексия, утра, итоги</div>
+  <div class="hero-sub">Личные журналы команды менеджеров</div>
   <div class="hero-stats">
-    <div class="hs"><div class="v">9</div><div class="l">Менеджеров</div></div>
-    <div class="hs"><div class="v">30</div><div class="l">Рабочих дней</div></div>
-    <div class="hs"><div class="v">101%+</div><div class="l">Цель команды</div></div>
+    <div class="hs"><span class="v">9</span><span class="l">Менеджеров</span></div>
+    <div class="hs"><span class="v">101%</span><span class="l">Цель</span></div>
+    <div class="hs"><span class="v">07.05.2026 18:57</span><span class="l">Обновлено</span></div>
   </div>
 </div>
-
-<div class="grid">
-
-  <!-- Ната Ковтун — 1 место -->
-  <a class="card" href="journal_nata.html">
-    <div class="card-top">
-      <div class="av gold">НК</div>
-      <div class="card-meta">
-        <div class="card-name">Ната Ковтун</div>
-        <div class="card-role">Менеджер по продажам</div>
-        <span class="badge-sm gold">🥇 1 место</span>
-      </div>
-      <div class="place-badge">🥇</div>
+<div class="grid"><a class="card" href="journal_potapov.html">
+  <div class="card-top">
+    <div class="av" style="background:linear-gradient(135deg,#3b82f6,#1d4ed8)">СП</div>
+    <div class="card-meta">
+      <div class="card-name">Савелий Потапов</div>
+      <div class="card-role">Менеджер по продажам</div>
+      <span class="badge-sm" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f644">📘 121.2%</span>
     </div>
-    <div class="card-body">
-      <div class="card-nums">
-        <div class="cn-item"><div class="cn-val">1 400 000 ₽</div><div class="cn-lbl">План</div></div>
-        <div class="cn-item"><div class="cn-val g">24 / 24</div><div class="cn-lbl">Отчётов</div></div>
-      </div>
-      <div class="prog-bar"><div class="prog-fill" style="width:100%;background:linear-gradient(90deg,#f5c842,#e8a000)"></div></div>
-      <div class="prog-info"><span>0 ₽</span><span style="color:#f5c842">план закрыт ✓</span></div>
-      <div class="card-quote">«Ещё не вечер» — никогда не считает деньги до конца дня</div>
+  </div>
+  <div class="card-body">
+    <div class="card-nums">
+      <div class="cn-item"><div class="cn-val">458 000 ₽</div><div class="cn-lbl">План</div></div>
+      <div class="cn-item"><div class="cn-val" style="color:#3b82f6">555 000 ₽</div><div class="cn-lbl">Факт</div></div>
     </div>
-  </a>
-
-  <!-- Сергей Кириллов — 2 место -->
-  <a class="card" href="journal_sergei.html">
-    <div class="card-top">
-      <div class="av silver">СК</div>
-      <div class="card-meta">
-        <div class="card-name">Сергей Кириллов</div>
-        <div class="card-role">Менеджер по продажам</div>
-        <span class="badge-sm silver">🥈 2 место</span>
-      </div>
-      <div class="place-badge">🥈</div>
+    <div class="prog-bar"><div class="prog-fill" style="width:121.2%;background:linear-gradient(90deg,#3b82f6,#1d4ed8)"></div></div>
+    <div class="prog-info"><span>24 дней активности</span><span style="color:#3b82f6">121.2%</span></div>
+  </div>
+</a><a class="card" href="journal_nata.html">
+  <div class="card-top">
+    <div class="av" style="background:linear-gradient(135deg,#f5c842,#e8a000)">НК</div>
+    <div class="card-meta">
+      <div class="card-name">Ната Ковтун</div>
+      <div class="card-role">Менеджер по продажам</div>
+      <span class="badge-sm" style="background:#f5c84222;color:#f5c842;border:1px solid #f5c84244">🥇 71.4%</span>
     </div>
-    <div class="card-body">
-      <div class="card-nums">
-        <div class="cn-item"><div class="cn-val">1 000 000 ₽</div><div class="cn-lbl">План</div></div>
-        <div class="cn-item"><div class="cn-val g">1 070 000 ₽</div><div class="cn-lbl">Факт (107%)</div></div>
-      </div>
-      <div class="prog-bar"><div class="prog-fill" style="width:100%;background:linear-gradient(90deg,#aab0c0,#7a8090)"></div></div>
-      <div class="prog-info"><span>0 ₽</span><span style="color:#aab0c0">107% плана ✓</span></div>
-      <div class="card-quote">Первый в команде открыл продажи 1 апреля, первый по баллам игры</div>
+  </div>
+  <div class="card-body">
+    <div class="card-nums">
+      <div class="cn-item"><div class="cn-val">1 400 000 ₽</div><div class="cn-lbl">План</div></div>
+      <div class="cn-item"><div class="cn-val" style="color:#f5c842">1 000 000 ₽</div><div class="cn-lbl">Факт</div></div>
     </div>
-  </a>
-
-  <!-- Диана Тагирова — 3 место -->
-  <a class="card" href="journal_diana.html">
-    <div class="card-top">
-      <div class="av bronze">ДТ</div>
-      <div class="card-meta">
-        <div class="card-name">Диана Тагирова</div>
-        <div class="card-role">Куратор + Менеджер</div>
-        <span class="badge-sm bronze">🥉 3 место</span>
-      </div>
-      <div class="place-badge">🥉</div>
+    <div class="prog-bar"><div class="prog-fill" style="width:71.4%;background:linear-gradient(90deg,#f5c842,#e8a000)"></div></div>
+    <div class="prog-info"><span>26 дней активности</span><span style="color:#f5c842">71.4%</span></div>
+  </div>
+</a><a class="card" href="journal_sergei.html">
+  <div class="card-top">
+    <div class="av" style="background:linear-gradient(135deg,#aab0c0,#7a8090)">СК</div>
+    <div class="card-meta">
+      <div class="card-name">Сергей Кириллов</div>
+      <div class="card-role">Менеджер по продажам</div>
+      <span class="badge-sm" style="background:#aab0c022;color:#aab0c0;border:1px solid #aab0c044">🥈 100.0%</span>
     </div>
-    <div class="card-body">
-      <div class="card-nums">
-        <div class="cn-item"><div class="cn-val">двойная роль</div><div class="cn-lbl">Статус</div></div>
-        <div class="cn-item"><div class="cn-val g">239 774 ₽</div><div class="cn-lbl">Факт (апр)</div></div>
-      </div>
-      <div class="prog-bar"><div class="prog-fill" style="width:80%;background:linear-gradient(90deg,#cd7f32,#a05a1a)"></div></div>
-      <div class="prog-info"><span>0 ₽</span><span style="color:#cd7f32">куратор + продажи</span></div>
-      <div class="card-quote">«Свой в доску» — продаёт как близкий человек, а не продавец</div>
+  </div>
+  <div class="card-body">
+    <div class="card-nums">
+      <div class="cn-item"><div class="cn-val">1 000 000 ₽</div><div class="cn-lbl">План</div></div>
+      <div class="cn-item"><div class="cn-val" style="color:#aab0c0">1 000 000 ₽</div><div class="cn-lbl">Факт</div></div>
     </div>
-  </a>
-
-  <!-- Динара Катунина -->
-  <a class="card" href="journal_dinara.html">
-    <div class="card-top">
-      <div class="av green">ДК</div>
-      <div class="card-meta">
-        <div class="card-name">Динара Катунина</div>
-        <div class="card-role">Менеджер по продажам · Москва</div>
-        <span class="badge-sm green">200%+ плана</span>
-      </div>
+    <div class="prog-bar"><div class="prog-fill" style="width:100.0%;background:linear-gradient(90deg,#aab0c0,#7a8090)"></div></div>
+    <div class="prog-info"><span>23 дней активности</span><span style="color:#aab0c0">100.0%</span></div>
+  </div>
+</a><a class="card" href="journal_diana.html">
+  <div class="card-top">
+    <div class="av" style="background:linear-gradient(135deg,#cd7f32,#a05a1a)">ДТ</div>
+    <div class="card-meta">
+      <div class="card-name">Диана Тагирова</div>
+      <div class="card-role">Куратор + Менеджер</div>
+      <span class="badge-sm" style="background:#cd7f3222;color:#cd7f32;border:1px solid #cd7f3244">🥉 166.7%</span>
     </div>
-    <div class="card-body">
-      <div class="card-nums">
-        <div class="cn-item"><div class="cn-val">100 000 ₽</div><div class="cn-lbl">План</div></div>
-        <div class="cn-item"><div class="cn-val g">199 848 ₽</div><div class="cn-lbl">Факт (200%+)</div></div>
-      </div>
-      <div class="prog-bar"><div class="prog-fill" style="width:100%;background:linear-gradient(90deg,#22c55e,#16a34a)"></div></div>
-      <div class="prog-info"><span>0 ₽</span><span style="color:#22c55e">первой закрыла план (8 апр) ✓</span></div>
-      <div class="card-quote">«Шаги сами себя не сделают» — ежедневные прогулки и движение</div>
+  </div>
+  <div class="card-body">
+    <div class="card-nums">
+      <div class="cn-item"><div class="cn-val">300 000 ₽</div><div class="cn-lbl">План</div></div>
+      <div class="cn-item"><div class="cn-val" style="color:#cd7f32">500 000 ₽</div><div class="cn-lbl">Факт</div></div>
     </div>
-  </a>
-
-  <!-- Савелий Потапов -->
-  <a class="card" href="journal_potapov.html">
-    <div class="card-top">
-      <div class="av blue">СП</div>
-      <div class="card-meta">
-        <div class="card-name">Савелий Потапов</div>
-        <div class="card-role">Менеджер по продажам</div>
-        <span class="badge-sm blue">23 / 24 отчёта</span>
-      </div>
+    <div class="prog-bar"><div class="prog-fill" style="width:130%;background:linear-gradient(90deg,#cd7f32,#a05a1a)"></div></div>
+    <div class="prog-info"><span>28 дней активности</span><span style="color:#cd7f32">166.7%</span></div>
+  </div>
+</a><a class="card" href="journal_dinara.html">
+  <div class="card-top">
+    <div class="av" style="background:linear-gradient(135deg,#22c55e,#16a34a)">ДК</div>
+    <div class="card-meta">
+      <div class="card-name">Динара Катунина</div>
+      <div class="card-role">Менеджер по продажам</div>
+      <span class="badge-sm" style="background:#22c55e22;color:#22c55e;border:1px solid #22c55e44">🎯 250.0%</span>
     </div>
-    <div class="card-body">
-      <div class="card-nums">
-        <div class="cn-item"><div class="cn-val">458 000 ₽</div><div class="cn-lbl">План закрыт</div></div>
-        <div class="cn-item"><div class="cn-val g">555 000 ₽</div><div class="cn-lbl">Итог апреля</div></div>
-      </div>
-      <div class="prog-bar"><div class="prog-fill" style="width:100%;background:linear-gradient(90deg,#3b82f6,#1d4ed8)"></div></div>
-      <div class="prog-info"><span>9 900 ₽ (1 апр)</span><span style="color:#3b82f6">555к (30 апр) ✓</span></div>
-      <div class="card-quote">Медленный старт → взрывной финиш. +293к за один день (22 апр)</div>
+  </div>
+  <div class="card-body">
+    <div class="card-nums">
+      <div class="cn-item"><div class="cn-val">100 000 ₽</div><div class="cn-lbl">План</div></div>
+      <div class="cn-item"><div class="cn-val" style="color:#22c55e">250 000 ₽</div><div class="cn-lbl">Факт</div></div>
     </div>
-  </a>
-
-  <!-- Анна Антонова -->
-  <a class="card" href="journal_anna_a.html">
-    <div class="card-top">
-      <div class="av orange">АА</div>
-      <div class="card-meta">
-        <div class="card-name">Анна Антонова</div>
-        <div class="card-role">Менеджер по продажам</div>
-        <span class="badge-sm orange">153% плана</span>
-      </div>
+    <div class="prog-bar"><div class="prog-fill" style="width:130%;background:linear-gradient(90deg,#22c55e,#16a34a)"></div></div>
+    <div class="prog-info"><span>20 дней активности</span><span style="color:#22c55e">250.0%</span></div>
+  </div>
+</a><a class="card" href="journal_oksana.html">
+  <div class="card-top">
+    <div class="av" style="background:linear-gradient(135deg,#64748b,#334155)">ОП</div>
+    <div class="card-meta">
+      <div class="card-name">Оксана Панченкова</div>
+      <div class="card-role">Менеджер по продажам</div>
+      <span class="badge-sm" style="background:#64748b22;color:#64748b;border:1px solid #64748b44">📊 78.0%</span>
     </div>
-    <div class="card-body">
-      <div class="card-nums">
-        <div class="cn-item"><div class="cn-val">300 000 ₽</div><div class="cn-lbl">План</div></div>
-        <div class="cn-item"><div class="cn-val g">460 000 ₽</div><div class="cn-lbl">Факт (153%)</div></div>
-      </div>
-      <div class="prog-bar"><div class="prog-fill" style="width:100%;background:linear-gradient(90deg,#f97316,#c2410c)"></div></div>
-      <div class="prog-info"><span>0 ₽</span><span style="color:#f97316">+160к сверх плана ✓</span></div>
-      <div class="card-quote">Медитации, «Настрой на чудо», конверсия 50% — зрелый подход</div>
+  </div>
+  <div class="card-body">
+    <div class="card-nums">
+      <div class="cn-item"><div class="cn-val">1 100 000 ₽</div><div class="cn-lbl">План</div></div>
+      <div class="cn-item"><div class="cn-val" style="color:#64748b">858 000 ₽</div><div class="cn-lbl">Факт</div></div>
     </div>
-  </a>
-
-  <!-- Анна Кириллова -->
-  <a class="card" href="journal_anna_k.html">
-    <div class="card-top">
-      <div class="av teal">АК</div>
-      <div class="card-meta">
-        <div class="card-name">Анна Кириллова</div>
-        <div class="card-role">Менеджер по продажам · Студент</div>
-        <span class="badge-sm teal">112.8% плана</span>
-      </div>
+    <div class="prog-bar"><div class="prog-fill" style="width:78.0%;background:linear-gradient(90deg,#64748b,#334155)"></div></div>
+    <div class="prog-info"><span>20 дней активности</span><span style="color:#64748b">78.0%</span></div>
+  </div>
+</a><a class="card" href="journal_anastasia.html">
+  <div class="card-top">
+    <div class="av" style="background:linear-gradient(135deg,#a855f7,#7c3aed)">АФ</div>
+    <div class="card-meta">
+      <div class="card-name">Анастасия Фомина</div>
+      <div class="card-role">Менеджер по продажам</div>
+      <span class="badge-sm" style="background:#a855f722;color:#a855f7;border:1px solid #a855f744">⭐ 100.0%</span>
     </div>
-    <div class="card-body">
-      <div class="card-nums">
-        <div class="cn-item"><div class="cn-val">200 000 ₽</div><div class="cn-lbl">План</div></div>
-        <div class="cn-item"><div class="cn-val g">225 576 ₽</div><div class="cn-lbl">Факт (112.8%)</div></div>
-      </div>
-      <div class="prog-bar"><div class="prog-fill" style="width:100%;background:linear-gradient(90deg,#00c9a7,#007a65)"></div></div>
-      <div class="prog-info"><span>0 ₽ (2 недели)</span><span style="color:#00c9a7">взрывной финиш ✓</span></div>
-      <div class="card-quote">Студент + работа + 123 дня Duolingo. Медленный старт — сильный финиш</div>
+  </div>
+  <div class="card-body">
+    <div class="card-nums">
+      <div class="cn-item"><div class="cn-val">350 000 ₽</div><div class="cn-lbl">План</div></div>
+      <div class="cn-item"><div class="cn-val" style="color:#a855f7">350 000 ₽</div><div class="cn-lbl">Факт</div></div>
     </div>
-  </a>
-
-  <!-- Анастасия Фомина -->
-  <a class="card" href="journal_anastasia.html">
-    <div class="card-top">
-      <div class="av purple">АФ</div>
-      <div class="card-meta">
-        <div class="card-name">Анастасия Фомина</div>
-        <div class="card-role">Менеджер по продажам</div>
-        <span class="badge-sm purple">111.8% плана</span>
-      </div>
+    <div class="prog-bar"><div class="prog-fill" style="width:100.0%;background:linear-gradient(90deg,#a855f7,#7c3aed)"></div></div>
+    <div class="prog-info"><span>13 дней активности</span><span style="color:#a855f7">100.0%</span></div>
+  </div>
+</a><a class="card" href="journal_anna_a.html">
+  <div class="card-top">
+    <div class="av" style="background:linear-gradient(135deg,#f97316,#c2410c)">АА</div>
+    <div class="card-meta">
+      <div class="card-name">Анна Антонова</div>
+      <div class="card-role">Менеджер по продажам</div>
+      <span class="badge-sm" style="background:#f9731622;color:#f97316;border:1px solid #f9731644">🔥 153.3%</span>
     </div>
-    <div class="card-body">
-      <div class="card-nums">
-        <div class="cn-item"><div class="cn-val">350 000 ₽</div><div class="cn-lbl">План</div></div>
-        <div class="cn-item"><div class="cn-val g">391 307 ₽</div><div class="cn-lbl">Факт (111.8%)</div></div>
-      </div>
-      <div class="prog-bar"><div class="prog-fill" style="width:100%;background:linear-gradient(90deg,#a855f7,#7c3aed)"></div></div>
-      <div class="prog-info"><span>0 ₽</span><span style="color:#a855f7">после больничного — план закрыт ✓</span></div>
-      <div class="card-quote">3 дня на первую сделку, инициатива по статусным сообщениям</div>
+  </div>
+  <div class="card-body">
+    <div class="card-nums">
+      <div class="cn-item"><div class="cn-val">300 000 ₽</div><div class="cn-lbl">План</div></div>
+      <div class="cn-item"><div class="cn-val" style="color:#f97316">460 000 ₽</div><div class="cn-lbl">Факт</div></div>
     </div>
-  </a>
-
-  <!-- Оксана Панченкова -->
-  <a class="card" href="journal_oksana.html">
-    <div class="card-top">
-      <div class="av darkgray">ОП</div>
-      <div class="card-meta">
-        <div class="card-name">Оксана Панченкова</div>
-        <div class="card-role">Менеджер по продажам</div>
-        <span class="badge-sm darkgray">57% плана</span>
-      </div>
+    <div class="prog-bar"><div class="prog-fill" style="width:130%;background:linear-gradient(90deg,#f97316,#c2410c)"></div></div>
+    <div class="prog-info"><span>26 дней активности</span><span style="color:#f97316">153.3%</span></div>
+  </div>
+</a><a class="card" href="journal_anna_k.html">
+  <div class="card-top">
+    <div class="av" style="background:linear-gradient(135deg,#00c9a7,#007a65)">АК</div>
+    <div class="card-meta">
+      <div class="card-name">Анна Кириллова</div>
+      <div class="card-role">Менеджер по продажам</div>
+      <span class="badge-sm" style="background:#00c9a722;color:#00c9a7;border:1px solid #00c9a744">✨ —</span>
     </div>
-    <div class="card-body">
-      <div class="card-nums">
-        <div class="cn-item"><div class="cn-val">1 100 000 ₽</div><div class="cn-lbl">План</div></div>
-        <div class="cn-item"><div class="cn-val o">625 728 ₽</div><div class="cn-lbl">Факт (57%)</div></div>
-      </div>
-      <div class="prog-bar"><div class="prog-fill" style="width:57%;background:linear-gradient(90deg,#64748b,#334155)"></div></div>
-      <div class="prog-info"><span>0 ₽</span><span style="color:#94a3b8">625к — системные барьеры</span></div>
-      <div class="card-quote">Высокий план + отказы банков по рассрочкам — честный разбор</div>
+  </div>
+  <div class="card-body">
+    <div class="card-nums">
+      <div class="cn-item"><div class="cn-val">200 000 ₽</div><div class="cn-lbl">План</div></div>
+      <div class="cn-item"><div class="cn-val" style="color:#00c9a7">—</div><div class="cn-lbl">Факт</div></div>
     </div>
-  </a>
-
-</div>
-
+    <div class="prog-bar"><div class="prog-fill" style="width:0%;background:linear-gradient(90deg,#00c9a7,#007a65)"></div></div>
+    <div class="prog-info"><span>0 дней активности</span><span style="color:#00c9a7">—</span></div>
+  </div>
+</a></div>
 <footer>Путь 101% 2026 · Журналы команды · Апрель–Май 2026</footer>
-
 </body>
 </html>
