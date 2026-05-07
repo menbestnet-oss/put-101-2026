@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Журнал — Анна Кириллова | Путь 101% 2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f0f2f5;color:#2c3e50;line-height:1.6}
+.hero{background:linear-gradient(135deg,#1abc9c,#16a085);padding:44px 24px 36px;text-align:center}
+.badge{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.35);color:#fff;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:18px}
+.avatar{width:88px;height:88px;background:linear-gradient(135deg,#1abc9c,#27ae60);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:800;color:#fff;margin:0 auto 18px;box-shadow:0 8px 32px rgba(26,188,156,.5)}
+.hero h1{color:#fff;font-size:30px;font-weight:800;margin-bottom:6px}
+.hero-sub{color:rgba(255,255,255,.6);font-size:13px;letter-spacing:1px;text-transform:uppercase;margin-bottom:28px}
+.stats{display:flex;justify-content:center;gap:36px;flex-wrap:wrap}
+.stat .val{font-size:22px;font-weight:800;color:#fff;display:block}
+.stat .val.g{color:#2ecc71}.stat .val.t{color:#48c774}
+.stat .lbl{font-size:11px;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:1px}
+.prog-wrap{max-width:820px;margin:-18px auto 20px;padding:0 20px}
+.prog-card{background:#fff;border-radius:14px;padding:20px 24px;box-shadow:0 6px 24px rgba(0,0,0,.1)}
+.prog-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.prog-pct{font-size:20px;font-weight:800;color:#1abc9c}
+.prog-title{font-size:12px;font-weight:700;color:#7f8c8d;text-transform:uppercase;letter-spacing:1px}
+.track{background:#f0f2f5;border-radius:8px;height:12px;overflow:hidden;margin-bottom:8px}
+.fill{height:100%;background:linear-gradient(90deg,#1abc9c,#27ae60);border-radius:8px;width:100%;position:relative}
+.fill::after{content:'✅';position:absolute;right:4px;top:-4px;font-size:16px}
+.milestones{display:flex;justify-content:space-between;font-size:11px;color:#7f8c8d}
+.main{max-width:820px;margin:0 auto;padding:0 20px 48px}
+.week{display:flex;align-items:center;gap:10px;margin:28px 0 14px}
+.week-lbl{background:#16a085;color:#fff;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:20px;white-space:nowrap}
+.week-line{flex:1;height:1px;background:#e8ecef}
+.card{background:#fff;border-radius:14px;margin-bottom:14px;box-shadow:0 2px 10px rgba(0,0,0,.06);border:1px solid #e8ecef;overflow:hidden}
+.card:hover{box-shadow:0 4px 20px rgba(0,0,0,.1)}
+.card-hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#f8f9fa;border-bottom:1px solid #e8ecef;cursor:pointer;user-select:none}
+.hdr-l{display:flex;align-items:center;gap:12px}
+.day-num{width:42px;height:42px;background:linear-gradient(135deg,#16a085,#1abc9c);color:#fff;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:9px;font-weight:700;text-transform:uppercase}
+.day-num .n{font-size:18px;font-weight:900;line-height:1}
+.card-info h3{font-size:14px;font-weight:700}.card-info .sub{font-size:11px;color:#7f8c8d}
+.hdr-r{display:flex;align-items:center;gap:10px}
+.fb{font-size:12px;font-weight:700;padding:4px 10px;border-radius:7px}
+.fb.z{background:#fef5f5;color:#c0392b}.fb.lo{background:#fef9e7;color:#e67e22}
+.fb.hi{background:#eafaf1;color:#27ae60}.fb.done{background:#d5f5e3;color:#196f3d;border:1px solid #27ae60}
+.grow{font-size:11px;color:#27ae60;font-weight:700}
+.tog{color:#7f8c8d;transition:transform .3s}.card.open .tog{transform:rotate(180deg)}
+.card-body{display:none}.card.open .card-body{display:block}
+.blk{padding:16px 18px;border-bottom:1px solid #e8ecef}.blk:last-child{border-bottom:none}
+.blk-lbl{display:flex;align-items:center;gap:7px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:9px}
+.blk-lbl .dot{width:7px;height:7px;border-radius:50%}
+.blk.mo{background:#e8f4fd}.blk.mo .blk-lbl{color:#2980b9}.blk.mo .dot{background:#3498db}
+.blk.ev{background:#eafaf1}.blk.ev .blk-lbl{color:#1e8449}.blk.ev .dot{background:#27ae60}
+.blk.cn{background:#fef9e7}.blk.cn .blk-lbl{color:#b7770d}.blk.cn .dot{background:#f39c12}
+.blk-txt{font-size:13px;line-height:1.7}
+.mrow{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.m{background:#fff;border:1px solid #e8ecef;border-radius:7px;padding:7px 12px;font-size:11px}
+.m .ml{color:#7f8c8d;margin-bottom:2px}.m .mv{font-weight:700;font-size:13px}
+.m .mv.a{color:#27ae60}.m .mv.r{color:#e74c3c}
+.final{background:linear-gradient(135deg,#16a085,#0e6655);border-radius:18px;padding:32px;margin-top:28px}
+.final-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px}
+@media(max-width:580px){.final-grid{grid-template-columns:1fr}}
+.fb2{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:16px}
+.fb2 h4{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:9px}
+.fb2 ul{list-style:none;padding:0}
+.fb2 ul li{font-size:12px;color:rgba(255,255,255,.82);padding:3px 0 3px 14px;position:relative}
+.fb2 ul li::before{content:'→';position:absolute;left:0;color:#1abc9c;font-weight:700}
+.verdict{background:rgba(26,188,156,.12);border:1px solid rgba(26,188,156,.3);border-radius:10px;padding:18px}
+.verdict p{font-size:13px;color:rgba(255,255,255,.87);line-height:1.8}
+.verdict strong{color:#48e8cc}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">📚 Студентка + менеджер · 112.8% плана</div>
+  <div class="avatar">АК</div>
+  <h1>Анна Кириллова</h1>
+  <div class="hero-sub">Менеджер по продажам · Студентка · Апрель 2026</div>
+  <div class="stats">
+    <div class="stat"><span class="val">200 000 ₽</span><span class="lbl">План апреля</span></div>
+    <div class="stat"><span class="val g">225 576 ₽</span><span class="lbl">Факт апреля</span></div>
+    <div class="stat"><span class="val g">112.8%</span><span class="lbl">Выполнение</span></div>
+    <div class="stat"><span class="val t">123 дня</span><span class="lbl">Duolingo-серия</span></div>
+  </div>
+</div>
+
+<div class="prog-wrap">
+  <div class="prog-card">
+    <div class="prog-hdr">
+      <span class="prog-title">Прогресс апреля</span>
+      <span class="prog-pct">112.8% плана — 225 576 ₽ при плане 200 000 ₽</span>
+    </div>
+    <div class="track"><div class="fill"></div></div>
+    <div class="milestones"><span>0 ₽</span><span>50к</span><span>100к</span><span>200к (план ✓)</span><span>225к ✅</span></div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="week"><span class="week-lbl">Неделя 2 · Медленный, но уверенный старт</span><div class="week-line"></div></div>
+
+  <div class="card open" id="ak1">
+    <div class="card-hdr" onclick="toggle('ak1')">
+      <div class="hdr-l">
+        <div class="day-num"><span class="n">8</span>апр</div>
+        <div class="card-info"><h3>Английский — 116 день подряд</h3><div class="sub">Среда · Нет оплат, но есть система</div></div>
+      </div>
+      <div class="hdr-r"><span class="fb z">0 ₽</span><span class="tog">▼</span></div>
+    </div>
+    <div class="card-body">
+      <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя · 10:55</div>
+        <div class="blk-txt">Duolingo — 116-й день подряд. Не прерывала серию ни разу. Учит английский ежедневно параллельно с работой и учёбой. Это дисциплина высокого уровня.</div>
+      </div>
+      <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня · 21:49</div>
+        <div class="mrow">
+          <div class="m"><div class="ml">Факт</div><div class="mv r">0 ₽</div></div>
+          <div class="m"><div class="ml">Победа</div><div class="mv">Клиенты 9900 начали выходить</div></div>
+        </div>
+        <div class="blk-txt">Нет оплат, но есть движение: клиенты с базы 9900 начали отвечать. <em>«Нет побед»</em> — честная самооценка. Не придумывает несуществующие победы.</div>
+      </div>
+      <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div>
+        <div class="blk-txt">Нулевые продажи при 116-дневной серии Duolingo — это не противоречие. Это студентка, которая одновременно держит три системы: учёба в вузе + английский + продажи. Провала нет — есть перегрузка.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="ak2">
+    <div class="card-hdr" onclick="toggle('ak2')">
+      <div class="hdr-l">
+        <div class="day-num"><span class="n">9</span>апр</div>
+        <div class="card-info"><h3>Сериал + горячие параллельно</h3><div class="sub">Четверг · Мультизадачность</div></div>
+      </div>
+      <div class="hdr-r"><span class="fb z">0 ₽</span><span class="tog">▼</span></div>
+    </div>
+    <div class="card-body">
+      <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя · 10:59</div>
+        <div class="blk-txt">Сериал + работа с горячими параллельно. Умеет совмещать отдых и работу без жёсткого разграничения. Гибкость рабочего пространства как навык.</div>
+      </div>
+      <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня</div>
+        <div class="blk-txt">Прогресс по горячим. Пишет: <em>«Неловко работать из дома»</em> — интересное признание. Офис создаёт рабочий контекст, который дому не хватает. Важная самодиагностика.</div>
+      </div>
+      <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div>
+        <div class="blk-txt">«Неловко работать из дома» — это про отсутствие рабочей среды, а не про лень. Для молодого сотрудника важен офисный контекст. Рекомендация: как можно больше времени в офисе.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="ak3">
+    <div class="card-hdr" onclick="toggle('ak3')">
+      <div class="hdr-l">
+        <div class="day-num"><span class="n">10</span>апр</div>
+        <div class="card-info"><h3>Duolingo помогает понимать контекст</h3><div class="sub">Пятница · Связь учёбы и работы</div></div>
+      </div>
+      <div class="hdr-r"><span class="fb z">0 ₽</span><span class="tog">▼</span></div>
+    </div>
+    <div class="card-body">
+      <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя · 11:45</div>
+        <div class="blk-txt">Пишет: <em>«Английский помогает понимать контекст»</em>. Сама видит связь между изучением языка и работой — синтетическое мышление. Не изолирует навыки друг от друга.</div>
+      </div>
+      <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня · 21:52</div>
+        <div class="mrow">
+          <div class="m"><div class="ml">Факт</div><div class="mv r">0 ₽</div></div>
+        </div>
+        <div class="blk-txt">Прогресс по горячим продолжается. 0₽ в факте — но понимает, что работа ведётся системно. Не паникует.</div>
+      </div>
+      <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div>
+        <div class="blk-txt">Три дня нулевых продаж — но не ноль работы. База прогревается. Английский как инструмент понимания рабочего контекста — это системное мышление. Такие связи обычно видят через годы, не в начале карьеры.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="week"><span class="week-lbl">Неделя 3 · Первые оплаты</span><div class="week-line"></div></div>
+
+  <div class="card" id="ak4">
+    <div class="card-hdr" onclick="toggle('ak4')">
+      <div class="hdr-l">
+        <div class="day-num"><span class="n">13</span>апр</div>
+        <div class="card-info"><h3>Бьюти-процедуры + 19к</h3><div class="sub">Понедельник · Горячие начали выходить</div></div>
+      </div>
+      <div class="hdr-r"><span class="grow">+19 404 ₽</span><span class="fb lo">19 404 ₽</span><span class="tog">▼</span></div>
+    </div>
+    <div class="card-body">
+      <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя · 11:47</div>
+        <div class="blk-txt">Бьюти-процедуры перед новой неделей. Забота о внешности как ритуал настройки на рабочий лад. <em>«Выгляжу хорошо → чувствую уверенность → звоню»</em>.</div>
+      </div>
+      <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня · 20:59</div>
+        <div class="mrow">
+          <div class="m"><div class="ml">Факт</div><div class="mv">19 404 ₽</div></div>
+          <div class="m"><div class="ml">Событие</div><div class="mv a">Горячие вышли из игнора</div></div>
+        </div>
+        <div class="blk-txt">Горячие начали выходить из игнора — первые деньги пошли. Запуск прошёл слабо, но горячая база реагирует. Поняла: терпение в работе с горячими даёт результат.</div>
+      </div>
+      <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div>
+        <div class="blk-txt">Первые 19к после двух недель нулей — это разблокировка. Горячие выходят из игнора: значит, касания работали. Психологически важный момент — не сдалась в период нулей.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="ak5">
+    <div class="card-hdr" onclick="toggle('ak5')">
+      <div class="hdr-l">
+        <div class="day-num"><span class="n">15–17</span>апр</div>
+        <div class="card-info"><h3>Сериал финального сезона</h3><div class="sub">Ср–Пт · Клиенты с ошибками</div></div>
+      </div>
+      <div class="hdr-r"><span class="fb lo">18 612 ₽</span><span class="tog">▼</span></div>
+    </div>
+    <div class="card-body">
+      <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя · три дня</div>
+        <div class="blk-txt">Три дня подряд — сериал последнего сезона. <em>«Грустно, что заканчивается»</em>. Честная эмоция — не скрывает, что смотрит сериал утром. Это часть её восстановления.</div>
+      </div>
+      <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия · 16–17 апр</div>
+        <div class="mrow">
+          <div class="m"><div class="ml">Факт</div><div class="mv">18 612 ₽</div></div>
+        </div>
+        <div class="blk-txt">Прозвонила потенциалов. Интересное наблюдение: <em>«клиенты жаловались на программу, не признавая собственных ошибок»</em>. Видит психологию клиентов — важный навык.</div>
+      </div>
+      <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div>
+        <div class="blk-txt">«Клиенты не признают своих ошибок» — это зрелая наблюдательность. Умеет разграничивать: клиент жалуется на продукт, а проблема — в его применении. Это основа экспертного позиционирования.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="week"><span class="week-lbl">Финал апреля · Выполнен план</span><div class="week-line"></div></div>
+
+  <div class="card" id="ak6">
+    <div class="card-hdr" onclick="toggle('ak6')">
+      <div class="hdr-l">
+        <div class="day-num"><span class="n">20</span>апр</div>
+        <div class="card-info"><h3>Налоги с мужем + работа</h3><div class="sub">Понедельник · Взрослые дела</div></div>
+      </div>
+      <div class="hdr-r"><span class="fb lo">в росте</span><span class="tog">▼</span></div>
+    </div>
+    <div class="card-body">
+      <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя · 11:06</div>
+        <div class="blk-txt">Смотрела видео про налоги вместе с мужем. Студентка с семьёй — уже занимается финансовой грамотностью. Зрелость не в возрасте, а в подходе.</div>
+      </div>
+      <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня</div>
+        <div class="blk-txt">Рефлексия зафиксирована. Продолжает звонить и закрывать. К 20 апреля — продажи набирают обороты после медленного старта.</div>
+      </div>
+      <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div>
+        <div class="blk-txt">Студентка + замужем + изучает налоги вместе с мужем. Это про зрелость и ответственность. Такой человек понимает: деньги — не просто факт, а инструмент жизни.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="ak7">
+    <div class="card-hdr" onclick="toggle('ak7')">
+      <div class="hdr-l">
+        <div class="day-num"><span class="n">30</span>апр</div>
+        <div class="card-info"><h3>225 576 ₽ — план выполнен ✅</h3><div class="sub">Четверг · 112.8% цели</div></div>
+      </div>
+      <div class="hdr-r"><span class="grow">+25 576₽ сверх плана</span><span class="fb done">225 576 ₽ ✓</span><span class="tog">▼</span></div>
+    </div>
+    <div class="card-body">
+      <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя</div>
+        <div class="blk-txt">Последний день апреля. 30 утренних ритуалов — ни один не пропущен. При нагрузке студентки + семьи — это высокая дисциплина.</div>
+      </div>
+      <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия месяца</div>
+        <div class="mrow">
+          <div class="m"><div class="ml">Итог апреля</div><div class="mv a">225 576 ₽</div></div>
+          <div class="m"><div class="ml">Выполнение</div><div class="mv a">112.8%</div></div>
+        </div>
+        <div class="blk-txt">Выполнила план. После двух недель нулей — разгон во второй половине апреля. Медленный старт, уверенный финиш.</div>
+      </div>
+      <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div>
+        <div class="blk-txt">От нуля к 225к — за апрель. При нагрузке студентки + работа + семья. Duolingo 123 дня без перерыва. Это не просто результат — это характер. Медленный старт ≠ слабый человек.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="final" style="margin-top:28px">
+    <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#48e8cc;margin-bottom:8px">Итоговый вывод по менеджеру</div>
+    <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:22px;line-height:1.3">Анна Кириллова — апрель 2026<br>📚 Студентка · 225 576 ₽ (112.8% плана)</div>
+    <div class="final-grid">
+      <div class="fb2"><h4>Сильные стороны</h4><ul>
+        <li>123 дня Duolingo подряд — железная дисциплина</li>
+        <li>112.8% плана при тройной нагрузке: вуз + работа + семья</li>
+        <li>Зрелая психология клиентов — видит ошибки, а не обвиняет</li>
+        <li>Финансовая грамотность — изучает налоги с мужем</li>
+        <li>Честная самооценка: «нет побед» — не придумывает</li>
+      </ul></div>
+      <div class="fb2"><h4>Зоны роста</h4><ul>
+        <li>Медленный старт: 0₽ за первые 2 недели</li>
+        <li>Неловкость при работе из дома — нужен офисный контекст</li>
+        <li>Нагрузка студентки + работа — риск перегрузки</li>
+        <li>Необходимо увеличить темп в начале месяца</li>
+      </ul></div>
+      <div class="fb2"><h4>Ключевые события апреля</h4><ul>
+        <li>8–10 апр: 0₽, но 116+ день Duolingo</li>
+        <li>13 апр: первые 19к — горячие вышли из игнора</li>
+        <li>15–17 апр: инсайт про клиентов с ошибками</li>
+        <li>20 апр: налоги с мужем — финансовая грамотность</li>
+        <li>30 апр: 225к — план выполнен на 112.8%</li>
+      </ul></div>
+      <div class="fb2"><h4>Образ менеджера</h4><ul>
+        <li>Системный: английский, учёба, работа без хаоса</li>
+        <li>Зрелый: замужем, налоги, семья как ресурс</li>
+        <li>Честный: «нет побед» — не врёт себе</li>
+        <li>Терпеливый: 2 недели нулей → не паника → результат</li>
+        <li>Наблюдательный: видит психологию клиентов глубоко</li>
+      </ul></div>
+    </div>
+    <div class="verdict"><p><strong>Вердикт:</strong> Анна Кириллова — <strong>самый перегруженный участник команды</strong>: студентка + замужем + Duolingo 123 дня + работа + план 200к. И при всём этом — 112.8% плана. Медленный старт — не слабость, а следствие тройной нагрузки. <strong>Её главная точка роста:</strong> найти способ быстрее «разгоняться» в начале месяца — тогда финал будет не 225к, а 350к+.</p></div>
+  </div>
+
+</div>
+<script>function toggle(id){const c=document.getElementById(id);c.classList.toggle('open')}</script>
+</body>
+</html>

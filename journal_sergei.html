@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Журнал — Сергей Кириллов | Путь 101% 2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f0f2f5;color:#2c3e50;line-height:1.6}
+.hero{background:linear-gradient(135deg,#1a1a2e,#0f3460);padding:44px 24px 36px;text-align:center}
+.badge{display:inline-block;background:rgba(192,192,192,.2);border:1px solid rgba(192,192,192,.5);color:#c0c0c0;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:18px}
+.avatar{width:88px;height:88px;background:linear-gradient(135deg,#c0c0c0,#808080);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:800;color:#fff;margin:0 auto 18px;box-shadow:0 8px 32px rgba(192,192,192,.4)}
+.hero h1{color:#fff;font-size:30px;font-weight:800;margin-bottom:6px}
+.hero-sub{color:rgba(255,255,255,.5);font-size:13px;letter-spacing:1px;text-transform:uppercase;margin-bottom:28px}
+.stats{display:flex;justify-content:center;gap:36px;flex-wrap:wrap}
+.stat .val{font-size:24px;font-weight:800;color:#fff;display:block}
+.stat .val.g{color:#2ecc71}.stat .val.s{color:#c0c0c0}
+.stat .lbl{font-size:11px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px}
+.prog-wrap{max-width:820px;margin:-18px auto 20px;padding:0 20px}
+.prog-card{background:#fff;border-radius:14px;padding:20px 24px;box-shadow:0 6px 24px rgba(0,0,0,.1)}
+.prog-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.prog-title{font-size:12px;font-weight:700;color:#7f8c8d;text-transform:uppercase;letter-spacing:1px}
+.prog-pct{font-size:20px;font-weight:800;color:#27ae60}
+.track{background:#f0f2f5;border-radius:8px;height:12px;overflow:hidden;margin-bottom:8px}
+.fill{height:100%;background:linear-gradient(90deg,#27ae60,#2ecc71);border-radius:8px;width:100%;position:relative}
+.fill::after{content:'🏆';position:absolute;right:4px;top:-4px;font-size:16px}
+.milestones{display:flex;justify-content:space-between;font-size:11px;color:#7f8c8d}
+.main{max-width:820px;margin:0 auto;padding:0 20px 48px}
+.week{display:flex;align-items:center;gap:10px;margin:28px 0 14px}
+.week-lbl{background:#1a1a2e;color:#fff;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:20px;white-space:nowrap}
+.week-line{flex:1;height:1px;background:#e8ecef}
+.card{background:#fff;border-radius:14px;margin-bottom:14px;box-shadow:0 2px 10px rgba(0,0,0,.06);border:1px solid #e8ecef;overflow:hidden}
+.card:hover{box-shadow:0 4px 20px rgba(0,0,0,.1)}
+.card-hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#f8f9fa;border-bottom:1px solid #e8ecef;cursor:pointer;user-select:none}
+.hdr-l{display:flex;align-items:center;gap:12px}
+.day-num{width:42px;height:42px;background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:9px;font-weight:700;text-transform:uppercase}
+.day-num .n{font-size:18px;font-weight:900;line-height:1}
+.card-info h3{font-size:14px;font-weight:700}
+.card-info .sub{font-size:11px;color:#7f8c8d}
+.hdr-r{display:flex;align-items:center;gap:10px}
+.fb{font-size:12px;font-weight:700;padding:4px 10px;border-radius:7px}
+.fb.z{background:#fef5f5;color:#c0392b}
+.fb.lo{background:#fef9e7;color:#e67e22}
+.fb.hi{background:#eafaf1;color:#27ae60}
+.fb.done{background:#d5f5e3;color:#196f3d;border:1px solid #27ae60}
+.fb.sil{background:rgba(192,192,192,.15);color:#555;border:1px solid rgba(192,192,192,.4)}
+.grow{font-size:11px;color:#27ae60;font-weight:700}
+.tog{color:#7f8c8d;transition:transform .3s}
+.card.open .tog{transform:rotate(180deg)}
+.card-body{display:none}
+.card.open .card-body{display:block}
+.blk{padding:16px 18px;border-bottom:1px solid #e8ecef}
+.blk:last-child{border-bottom:none}
+.blk-lbl{display:flex;align-items:center;gap:7px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:9px}
+.blk-lbl .dot{width:7px;height:7px;border-radius:50%}
+.blk.mo{background:#e8f4fd}.blk.mo .blk-lbl{color:#2980b9}.blk.mo .dot{background:#3498db}
+.blk.ev{background:#eafaf1}.blk.ev .blk-lbl{color:#1e8449}.blk.ev .dot{background:#27ae60}
+.blk.cn{background:#fef9e7}.blk.cn .blk-lbl{color:#b7770d}.blk.cn .dot{background:#f39c12}
+.blk-txt{font-size:13px;line-height:1.7}
+.mrow{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.m{background:#fff;border:1px solid #e8ecef;border-radius:7px;padding:7px 12px;font-size:11px}
+.m .ml{color:#7f8c8d;margin-bottom:2px}
+.m .mv{font-weight:700;font-size:13px}
+.m .mv.a{color:#27ae60}.m .mv.r{color:#e74c3c}.m .mv.s{color:#888}
+.final{background:linear-gradient(135deg,#1a1a2e,#16213e);border-radius:18px;padding:32px;margin-top:28px}
+.final-badge{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#c0c0c0;margin-bottom:8px}
+.final h2{font-size:22px;font-weight:800;color:#fff;margin-bottom:22px;line-height:1.3}
+.final-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px}
+@media(max-width:580px){.final-grid{grid-template-columns:1fr}}
+.fb2{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px}
+.fb2 h4{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:9px}
+.fb2 ul{list-style:none;padding:0}
+.fb2 ul li{font-size:12px;color:rgba(255,255,255,.8);padding:3px 0 3px 14px;position:relative}
+.fb2 ul li::before{content:'→';position:absolute;left:0;color:#c0c0c0;font-weight:700}
+.verdict{background:rgba(192,192,192,.1);border:1px solid rgba(192,192,192,.25);border-radius:10px;padding:18px}
+.verdict p{font-size:13px;color:rgba(255,255,255,.85);line-height:1.8}
+.verdict strong{color:#c0c0c0}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">🥈 2-е место · Путь 101% 2026</div>
+  <div class="avatar">СК</div>
+  <h1>Сергей Кириллов</h1>
+  <div class="hero-sub">Менеджер по продажам · Личный журнал апреля</div>
+  <div class="stats">
+    <div class="stat"><span class="val">500к → 1 000 000 ₽</span><span class="lbl">План апреля</span></div>
+    <div class="stat"><span class="val g">1 070 000 ₽</span><span class="lbl">Факт апреля</span></div>
+    <div class="stat"><span class="val s">107%</span><span class="lbl">Выполнение</span></div>
+    <div class="stat"><span class="val">🥈 2-е место</span><span class="lbl">Итог игры</span></div>
+  </div>
+</div>
+
+<div class="prog-wrap">
+  <div class="prog-card">
+    <div class="prog-hdr">
+      <span class="prog-title">Прогресс апреля</span>
+      <span class="prog-pct">107% плана — 1 070 000 ₽ при плане 1 000 000 ₽</span>
+    </div>
+    <div class="track"><div class="fill"></div></div>
+    <div class="milestones"><span>0 ₽</span><span>250к</span><span>500к (план-1)</span><span>1кк (план-2)</span><span>1 070к ✓</span></div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="week"><span class="week-lbl">Старт · 1 апреля</span><div class="week-line"></div></div>
+
+  <div class="card open" id="s1">
+    <div class="card-hdr" onclick="toggle('s1')">
+      <div class="hdr-l">
+        <div class="day-num"><span class="n">1</span>апр</div>
+        <div class="card-info"><h3>Первый в команде с оплатой</h3><div class="sub">Среда · Старт марафона</div></div>
+      </div>
+      <div class="hdr-r"><span class="fb hi">50 000 ₽</span><span class="tog">▼</span></div>
+    </div>
+    <div class="card-body">
+      <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя</div>
+        <div class="blk-txt">Утренний ритуал с фото/видео. Настроен на результат с первого дня — не тратит время на «раскачку». Чёткий план: работать по базе, закрывать горячих.</div>
+      </div>
+      <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня</div>
+        <div class="mrow">
+          <div class="m"><div class="ml">Факт</div><div class="mv a">50 000 ₽</div></div>
+          <div class="m"><div class="ml">В команде</div><div class="mv a">1-й с оплатой</div></div>
+          <div class="m"><div class="ml">Осталось</div><div class="mv">450 000 ₽</div></div>
+        </div>
+        <div class="blk-txt">Закрыл сделку в первый день апреля. Первым в команде. Рефлексия в срок — победы дня зафиксированы, план на завтра чёткий.</div>
+      </div>
+      <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div>
+        <div class="blk-txt">50к в первый день — сигнал о выстроенном пайплайне. Пока Савелий сидел на 9 900₽ неделю, Сергей сразу взял 50к. Психологически это очень важно: начало без застоя задаёт темп всему месяцу.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="week"><span class="week-lbl">Неделя 2 · Перевыполнение первого плана</span><div class="week-line"></div></div>
+
+  <div class="card" id="s2">
+    <div class="card-hdr" onclick="toggle('s2')">
+      <div class="hdr-l">
+        <div class="day-num"><span class="n">10</span>апр</div>
+        <div class="card-info"><h3>Первый план закрыт! 595к 🔥</h3><div class="sub">Пятница · Перевыполнение 500к</div></div>
+      </div>
+      <div class="hdr-r"><span class="grow">+545к за 10 дней</span><span class="fb done">595 817 ₽ ✓</span><span class="tog">▼</span></div>
+    </div>
+    <div class="card-body">
+      <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя</div>
+        <div class="blk-txt">Утренний ритуал. Входит в пятницу зная, что цель 500к — в руках. Не расслабляется: продолжает прозвон по базе.</div>
+      </div>
+      <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня</div>
+        <div class="mrow">
+          <div class="m"><div class="ml">Факт</div><div class="mv a">595 817 ₽</div></div>
+          <div class="m"><div class="ml">Перевыполнение</div><div class="mv a">+119.2%</div></div>
+          <div class="m"><div class="ml">Осталось до 1кк</div><div class="mv">404 183 ₽</div></div>
+        </div>
+        <div class="blk-txt">К 10 апреля — перевыполнил первоначальный план 500к на 19%. По итогам недели — лидер по баллам игры: 85 очков (1-е место в неделю). Победы дня зафиксированы.</div>
+      </div>
+      <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div>
+        <div class="blk-txt">595к за 10 дней = ~60к/день средний темп. Если сохранить, к 30-му будет 1,8 млн. Значит — план повышен с 500к до 1кк. Это правильное решение и для него, и для компании. Не потолок, а новый старт.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="week"><span class="week-lbl">Неделя 3 · Лидер недели по баллам</span><div class="week-line"></div></div>
+
+  <div class="card" id="s3">
+    <div class="card-hdr" onclick="toggle('s3')">
+      <div class="hdr-l">
+        <div class="day-num"><span class="n">20</span>апр</div>
+        <div class="card-info"><h3>85 баллов — лучшая неделя</h3><div class="sub">Понедельник · Топ-1 в игре</div></div>
+      </div>
+      <div class="hdr-r"><span class="fb sil">85 очков / неделю</span><span class="tog">▼</span></div>
+    </div>
+    <div class="card-body">
+      <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя</div>
+        <div class="blk-txt">Утренний ритуал зафиксирован. Диана публикует рейтинг недели — Сергей на 1-м месте с 85 баллами. Это максимум: 5 (утро) + 5 (продажи 50к+) + 15 (обучение) × 5 дней + бонусы.</div>
+      </div>
+      <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня</div>
+        <div class="mrow">
+          <div class="m"><div class="ml">Баллы за неделю</div><div class="mv a">85 очков (1-е место)</div></div>
+          <div class="m"><div class="ml">Баллы за месяц</div><div class="mv a">306 очков (лидер)</div></div>
+        </div>
+        <div class="blk-txt">По совокупным баллам месяца — тоже 1-е место (306 очков). Продажи + дисциплина дают синергию. Рефлексия зафиксирована, план на завтра чёткий.</div>
+      </div>
+      <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div>
+        <div class="blk-txt">Редкое сочетание: лидер и по продажам, и по игровой дисциплине. 306 баллов из 460 возможных = 66.5%. Остаток апреля — шанс добрать баллы и деньги. До 1кк осталось ~404к за ~10 дней.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="week"><span class="week-lbl">Финал · 30 апреля</span><div class="week-line"></div></div>
+
+  <div class="card" id="s4">
+    <div class="card-hdr" onclick="toggle('s4')">
+      <div class="hdr-l">
+        <div class="day-num"><span class="n">30</span>апр</div>
+        <div class="card-info"><h3>Итог: 1 070 000 ₽ 🏆</h3><div class="sub">Четверг · Финал апреля</div></div>
+      </div>
+      <div class="hdr-r"><span class="grow">+107% плана</span><span class="fb done">1 070 000 ₽ ✓</span><span class="tog">▼</span></div>
+    </div>
+    <div class="card-body">
+      <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя</div>
+        <div class="blk-txt">Последний день апреля. Утренний ритуал соблюдён. Продолжает звонить и закрывать — каждый день до последнего.</div>
+      </div>
+      <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня</div>
+        <div class="mrow">
+          <div class="m"><div class="ml">Итог апреля</div><div class="mv a">1 070 000 ₽</div></div>
+          <div class="m"><div class="ml">Выполнение плана</div><div class="mv a">107% от 1кк</div></div>
+          <div class="m"><div class="ml">Перевыполнение</div><div class="mv a">+70 000 ₽</div></div>
+        </div>
+        <div class="blk-txt">Закрыл план 1кк и вышел за него на +70к. Рефлексия финального дня — победы зафиксированы, уже думает о мае.</div>
+      </div>
+      <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div>
+        <div class="blk-txt">1,07 млн при плане 500к (первоначальном) = 214% от стартового плана. Даже от повышенного плана 1кк = 107%. Такой результат — следствие системного подхода с первого дня, а не финального спринта.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="s5">
+    <div class="card-hdr" onclick="toggle('s5')">
+      <div class="hdr-l">
+        <div class="day-num"><span class="n">4</span>май</div>
+        <div class="card-info"><h3>Май: первый день — 130к</h3><div class="sub">Понедельник · Новый месяц</div></div>
+      </div>
+      <div class="hdr-r"><span class="fb hi">130 000 ₽</span><span class="tog">▼</span></div>
+    </div>
+    <div class="card-body">
+      <div class="blk mo"><div class="blk-lbl"><span class="dot"></span>Утро для себя</div>
+        <div class="blk-txt">Новый месяц — новый ритуал. Изучает новый продукт «Клод» (Claude AI), готовится к продажам. Стандарт не снижает.</div>
+      </div>
+      <div class="blk ev"><div class="blk-lbl"><span class="dot"></span>Рефлексия дня</div>
+        <div class="mrow">
+          <div class="m"><div class="ml">Новый план (май)</div><div class="mv">1 000 000 ₽</div></div>
+          <div class="m"><div class="ml">Факт 4 мая</div><div class="mv a">130 000 ₽</div></div>
+        </div>
+        <div class="blk-txt">130к в первый рабочий день мая — темп выше апрельского старта (50к 1 апреля). Поставил себе тот же план — 1кк. Начало сильное.</div>
+      </div>
+      <div class="blk cn"><div class="blk-lbl"><span class="dot"></span>Итоговый вывод</div>
+        <div class="blk-txt">130к в первый день мая против 50к в первый день апреля — рост входного темпа в 2.6 раза. Если апрель вышел в 1,07 млн при старте 50к, май может быть ещё лучше. Следим.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="final">
+    <div class="final-badge">Итоговый вывод по менеджеру</div>
+    <h2 style="font-size:22px;font-weight:800;color:#fff;margin-bottom:22px;line-height:1.3">Сергей Кириллов — апрель 2026<br>🥈 2-е место · 1 070 000 ₽ (107% плана)</h2>
+    <div class="final-grid">
+      <div class="fb2"><h4>Сильные стороны</h4><ul>
+        <li>Первый в команде с оплатой уже в день старта</li>
+        <li>Выполнил 500к к 10 апреля — быстрее всех</li>
+        <li>Лидер по недельным баллам игры (85 очков)</li>
+        <li>Стабильный ежедневный темп без провалов</li>
+        <li>107% плана 1кк = самый высокий абсолютный факт</li>
+      </ul></div>
+      <div class="fb2"><h4>Зоны роста</h4><ul>
+        <li>2-е место в игре (по баллам) — дисциплина чуть уступает Нате</li>
+        <li>Итог 1,07к vs 1,4к Наты — разрыв в абсолюте</li>
+        <li>Потенциал повышения плана выше 1кк на май</li>
+      </ul></div>
+      <div class="fb2"><h4>Ключевые цифры</h4><ul>
+        <li>День 1: 50 000₽ — первый в команде</li>
+        <li>День 10: 595 817₽ — перевыполнил план 500к</li>
+        <li>Неделя 3: 306 баллов — лидер по очкам</li>
+        <li>День 30: 1 070 000₽ — финал апреля</li>
+        <li>1 мая: 130 000₽ — старт мая</li>
+      </ul></div>
+      <div class="fb2"><h4>Стиль работы</h4><ul>
+        <li>Системный: не спринт, а ровный высокий темп</li>
+        <li>Ранний старт: 50к уже в день 1</li>
+        <li>Совмещение баллов и продаж — всестороннее участие</li>
+        <li>Реагирует на повышение плана без страха</li>
+      </ul></div>
+    </div>
+    <div class="verdict"><p><strong>Вердикт:</strong> Сергей Кириллов — самый результативный по абсолютному факту (1,07 млн). Взял 2-е место в игре, уступив Нате только по совокупной дисциплине. <strong>Его формула:</strong> мощный старт (50к в день 1) + ровный темп + лидерство в недельных баллах = системный победитель. На май — те же 1кк, но старт уже в 2.6 раза мощнее.</p></div>
+  </div>
+
+</div>
+
+<script>
+function toggle(id){const c=document.getElementById(id);c.classList.toggle('open')}
+</script>
+</body>
+</html>
