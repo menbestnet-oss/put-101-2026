@@ -121,6 +121,20 @@ def messages_from_cache(rows):
 
 
 def parse_export(path):
+    """Парсит экспорт. Подхватывает продолжения messages2.html, messages3.html и т.д."""
+    folder = os.path.dirname(path)
+    parts = sorted(
+        glob.glob(os.path.join(folder, 'messages*.html')),
+        key=lambda p: int(re.search(r'messages(\d*)\.html', os.path.basename(p)).group(1) or 1),
+    )
+    messages = []
+    for part in parts:
+        messages.extend(_parse_export_file(part))
+    print(f"  Всего сообщений: {len(messages)}")
+    return messages
+
+
+def _parse_export_file(path):
     try:
         from bs4 import BeautifulSoup
     except ImportError:
@@ -168,8 +182,19 @@ def parse_export(path):
     print(f"  Найдено сообщений: {len(messages)}")
     return messages
 
+# Написания имён, которые не ловятся обычным сопоставлением (латиница и т.п.)
+ALIASES = {
+    'panchenkova': 'Оксана Панченкова',
+}
+
+
 def find_manager(author):
     author_lo = author.lower().strip()
+
+    # 0. Алиасы (латиница, особые написания)
+    for alias, name in ALIASES.items():
+        if alias in author_lo:
+            return name
 
     # 1. Точное совпадение
     for name in MANAGERS:
@@ -771,6 +796,9 @@ def main():
     print("=" * 60)
 
     messages = parse_export(find_latest_export())
+    if not messages:
+        print("  !! Сообщений не найдено (экспорт пустой или ещё не дописан) — ничего не трогаю")
+        return
     generate_all(messages)
     publish()
 
