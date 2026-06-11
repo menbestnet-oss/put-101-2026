@@ -8,27 +8,23 @@
 После нового экспорта чата из Telegram — запусти снова, всё обновится.
 """
 
+import glob
 import re
 import os
+import subprocess
 import sys
 from datetime import datetime
 from collections import defaultdict
 from html import escape
 
-try:
-    from bs4 import BeautifulSoup
-except ImportError:
-    print("Install: pip install beautifulsoup4")
-    sys.exit(1)
-
 # Fix Windows console encoding
-if sys.platform == 'win32':
+if sys.platform == 'win32' and sys.stdout is not None:
     import io
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 
 # ── Пути ─────────────────────────────────────────────────────────────────────
 
-INPUT_FILE = r"C:\Users\Мансур\Downloads\Telegram Desktop\ChatExport_2026-05-05\messages.html"
+EXPORTS_DIR = r"C:\Users\Мансур\Downloads\Telegram Desktop"
 OUTPUT_DIR  = r"C:\Users\Мансур\put-101-2026"
 
 # ── Менеджеры ─────────────────────────────────────────────────────────────────
@@ -91,7 +87,46 @@ WEEKDAY_FULL = {0:'Понедельник',1:'Вторник',2:'Среда',3:'
 
 # ── Парсинг ───────────────────────────────────────────────────────────────────
 
+def find_latest_export():
+    """Самый свежий экспорт именно темы «Путь 101...» в Downloads\\Telegram Desktop."""
+    candidates = []
+    for folder in glob.glob(os.path.join(EXPORTS_DIR, 'ChatExport_*')):
+        path = os.path.join(folder, 'messages.html')
+        if not os.path.isfile(path):
+            continue
+        with open(path, 'r', encoding='utf-8') as f:
+            head = f.read(50_000)
+        if 'Путь 101' in head:
+            candidates.append(path)
+    if not candidates:
+        raise FileNotFoundError(
+            f"В {EXPORTS_DIR} нет экспортов темы «Путь 101...» (папки ChatExport_* с messages.html)")
+    return max(candidates, key=os.path.getmtime)
+
+
+def messages_from_cache(rows):
+    """Конвертирует записи messages_cache.json в формат сообщений парсера."""
+    messages = []
+    for r in rows:
+        dt = datetime.strptime(r['datetime'], '%Y-%m-%d %H:%M:%S')
+        messages.append({
+            'author':   r['author'],
+            'date':     dt.date(),
+            'hour':     dt.hour,
+            'time_str': dt.strftime('%H:%M'),
+            'datetime': dt,
+            'text':     r['text'],
+        })
+    return messages
+
+
 def parse_export(path):
+    try:
+        from bs4 import BeautifulSoup
+    except ImportError:
+        print("Install: pip install beautifulsoup4")
+        sys.exit(1)
+
     print(f"  Читаю: {path}")
     with open(path, 'r', encoding='utf-8') as f:
         soup = BeautifulSoup(f.read(), 'html.parser')
@@ -134,11 +169,26 @@ def parse_export(path):
     return messages
 
 def find_manager(author):
-    author_lo = author.lower()
-    for name, cfg in MANAGERS.items():
-        parts = name.lower().split()
-        if any(p in author_lo for p in parts if len(p) > 3):
+    author_lo = author.lower().strip()
+
+    # 1. Точное совпадение
+    for name in MANAGERS:
+        if name.lower() == author_lo:
             return name
+
+    # 2. Обе части имени присутствуют (защита от "Анна А." vs "Анна К.")
+    for name in MANAGERS:
+        parts = name.lower().split()
+        if len(parts) >= 2 and all(p in author_lo for p in parts):
+            return name
+
+    # 3. По фамилии (уникальный идентификатор)
+    for name in MANAGERS:
+        parts = name.lower().split()
+        surname = parts[-1]  # последнее слово = фамилия
+        if len(surname) > 4 and surname in author_lo:
+            return name
+
     return None
 
 def classify(msg):
@@ -635,15 +685,11 @@ footer{{text-align:center;padding:32px 24px;font-size:12px;color:#333;border-top
 
 # ── Главный запуск ─────────────────────────────────────────────────────────────
 
-def main():
-    print("=" * 60)
-    print("  Путь 101% 2026 — Генератор журналов")
-    print("=" * 60)
+def generate_all(messages, log=print):
+    """Группирует сообщения, генерирует все журналы + index.html.
 
-    # 1. Парсим чат
-    messages = parse_export(INPUT_FILE)
-
-    # 2. Группируем по менеджерам и датам
+    Возвращает (managers_stats, unmatched) — статистику и авторов без совпадения.
+    """
     grouped = defaultdict(lambda: defaultdict(list))
     unmatched = set()
     for msg in messages:
@@ -654,17 +700,15 @@ def main():
             unmatched.add(msg['author'])
 
     if unmatched:
-        print(f"\n  Авторы без совпадения (пропущены): {', '.join(sorted(unmatched))}")
+        log(f"Авторы без совпадения (пропущены): {', '.join(sorted(unmatched))}")
 
-    # 3. Генерируем журналы
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     managers_stats = {}
 
-    print("\n  Генерирую журналы:")
     for name, cfg in MANAGERS.items():
         days_data = dict(grouped.get(name, {}))
         if not days_data:
-            print(f"  !! {name}: сообщений не найдено -- пропускаю")
+            log(f"!! {name}: сообщений не найдено — пропускаю")
             continue
 
         total = sum(len(v) for v in days_data.values())
@@ -676,27 +720,59 @@ def main():
         max_fact = max(day_amounts.values()) if day_amounts else 0
 
         managers_stats[name] = {'days': len(days_data), 'total': total, 'max_fact': max_fact}
-        print(f"  OK {name}: {len(days_data)} дней, {total} сообщ., факт {fmt(max_fact) if max_fact else '---'}")
+        log(f"OK {name}: {len(days_data)} дней, {total} сообщ., факт {fmt(max_fact) if max_fact else '---'}")
 
         html = make_journal(name, cfg, days_data)
         with open(os.path.join(OUTPUT_DIR, cfg['file']), 'w', encoding='utf-8') as f:
             f.write(html)
 
-    # 4. Обновляем index.html
     index_html = make_index(managers_stats)
     with open(os.path.join(OUTPUT_DIR, 'index.html'), 'w', encoding='utf-8') as f:
         f.write(index_html)
-    print("  OK index.html обновлён")
+    log("OK index.html обновлён")
 
-    # 5. Пуш на GitHub
-    print("\n  Публикую на GitHub Pages...")
-    os.chdir(OUTPUT_DIR)
+    return managers_stats, unmatched
+
+
+def publish(log=print):
+    """Коммит и пуш на GitHub — только если есть реальные изменения.
+
+    Возвращает True, если пуш состоялся.
+    """
+    def git(*args, **kw):
+        return subprocess.run(['git', *args], cwd=OUTPUT_DIR, capture_output=True,
+                              text=True, encoding='utf-8', errors='replace', **kw)
+
+    status = git('status', '--porcelain')
+    if not status.stdout.strip():
+        log("Изменений нет — пуш не нужен")
+        return False
+
+    git('add', '-A')
     ts = datetime.now().strftime('%Y-%m-%d %H:%M')
-    os.system('git add -A')
-    ret = os.system(f'git commit -m "Journals update {ts}" --allow-empty')
-    os.system('git push')
-    print(f"\n  READY! Сайт: https://menbestnet-oss.github.io/put-101-2026/")
-    print(f"  ⏱  GitHub Pages обновляется 1–2 минуты после пуша\n")
+    commit = git('commit', '-m', f'Journals update {ts}')
+    if commit.returncode != 0:
+        log(f"git commit не прошёл: {commit.stdout} {commit.stderr}")
+        return False
+
+    push = git('push')
+    if push.returncode != 0:
+        log(f"git push не прошёл: {push.stderr}")
+        return False
+
+    log("Опубликовано: https://menbestnet-oss.github.io/put-101-2026/ (Pages обновится за 1–2 мин)")
+    return True
+
+
+def main():
+    """Запасной путь: генерация из ручного HTML-экспорта Telegram Desktop."""
+    print("=" * 60)
+    print("  Путь 101% 2026 — Генератор журналов (из HTML-экспорта)")
+    print("=" * 60)
+
+    messages = parse_export(find_latest_export())
+    generate_all(messages)
+    publish()
 
 
 if __name__ == '__main__':

@@ -1,0 +1,6 @@
+messages_cache.json
+auto_update.log
+*.session
+*.session-journal
+__pycache__/
+*.tmp
