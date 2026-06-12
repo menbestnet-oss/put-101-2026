@@ -26,6 +26,7 @@ sys.path.insert(0, SCRIPT_DIR)
 LOG_FILE = os.path.join(SCRIPT_DIR, "auto_update.log")
 
 import fetch_telegram
+import game_table
 import parse_journals
 
 
@@ -56,16 +57,30 @@ def main():
         log(f"Продолжаю на старом кэше ({len(rows)} сообщ.)")
         has_new = False
 
-    if not has_new and not force:
+    # 1b. Игровая таблица (Excel) — изменения тоже триггерят пересборку
+    def read_cache_text():
+        try:
+            with open(game_table.GAME_CACHE, encoding="utf-8") as f:
+                return f.read()
+        except OSError:
+            return None
+
+    old_game_text = read_cache_text()
+    game = game_table.read_game_table(log)
+    game_changed = read_cache_text() != old_game_text
+    if game_changed:
+        log("Игровая таблица изменилась")
+
+    if not has_new and not game_changed and not force:
         # Журналы могли ещё ни разу не собираться из кэша — проверим
         if os.path.exists(os.path.join(SCRIPT_DIR, "index.html")):
-            log("Новых сообщений нет — журналы актуальны")
+            log("Новых сообщений и изменений таблицы нет — сайт актуален")
             return 0
 
-    # 2. Генерация журналов
+    # 2. Генерация сайта
     try:
         messages = parse_journals.messages_from_cache(rows)
-        parse_journals.generate_all(messages, log)
+        parse_journals.generate_all(messages, log, game=game)
     except Exception as e:
         log(f"ОШИБКА генерации журналов: {e}")
         return 1

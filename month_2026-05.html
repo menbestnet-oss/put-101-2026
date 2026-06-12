@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Май 2026 · Путь 101% 2026</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0d0d1a;color:#e8e8f0;min-height:100vh}
+a{color:inherit;text-decoration:none}
+.nav{display:flex;gap:8px;flex-wrap:wrap;padding:16px 24px;border-bottom:1px solid rgba(255,255,255,.06);align-items:center}
+.nav a{font-size:12px;color:#888;border:1px solid #222;border-radius:8px;padding:6px 14px}
+.nav a:hover{color:#fff;border-color:#444}
+.nav a.act{color:#fff;background:#1e1e3a;border-color:#3b3b6a}
+.hero{background:linear-gradient(135deg,#1a1a3e 0%,#0d0d1a 70%);padding:40px 24px 28px;text-align:center;border-bottom:1px solid rgba(255,255,255,.06)}
+.hero-tag{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#7b7bff;margin-bottom:10px}
+h1{font-size:clamp(24px,4vw,38px);font-weight:900;color:#fff;margin-bottom:8px}
+.hero-sub{font-size:14px;color:#9999cc}
+.wrap{max-width:980px;margin:0 auto;padding:24px}
+.sect{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#555;margin:28px 0 12px;display:flex;align-items:center;gap:10px}
+.sect::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.06)}
+.cards4{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.mcard{background:#16162a;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px 16px}
+.mcard .l{font-size:10px;color:#555;text-transform:uppercase;letter-spacing:1.5px}
+.mcard .v{font-size:21px;font-weight:800;color:#fff;margin-top:3px}
+.mcard .v.g{color:#22c55e}.mcard .v.a{color:#f5c842}.mcard .v.o{color:#f97316}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.chip{font-size:12px;padding:5px 12px;border-radius:20px;font-weight:600}
+.chip.red{background:#ef444418;color:#ef4444;border:1px solid #ef444433}
+.chip.grn{background:#22c55e18;color:#22c55e;border:1px solid #22c55e33}
+.board{background:#16162a;border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:18px 20px}
+.brow{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px}
+.brow:last-child{border:none}
+.brow .pl{width:26px;text-align:center;font-weight:800;color:#555}
+.brow .pl.p1{color:#f5c842}.brow .pl.p2{color:#aab0c0}.brow .pl.p3{color:#cd7f32}
+.brow .nm{width:170px;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brow .bar{flex:1;height:8px;background:#1e1e35;border-radius:4px;overflow:hidden}
+.brow .bar i{display:block;height:100%;border-radius:4px}
+.brow .pts{width:120px;text-align:right;color:#aaa;font-variant-numeric:tabular-nums}
+.brow .bn{font-size:10px;background:#f5c84218;color:#f5c842;border:1px solid #f5c84233;border-radius:10px;padding:2px 8px;white-space:nowrap}
+.seasons{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.season{background:#16162a;border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:18px 20px;display:block;transition:transform .15s}
+.season:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.18)}
+.season .hd{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.season .ttl{font-size:16px;font-weight:800;color:#fff}
+.season .st{font-size:10px;padding:3px 9px;border-radius:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.season .st.done{background:#22c55e18;color:#22c55e;border:1px solid #22c55e33}
+.season .st.live{background:#7b7bff18;color:#7b7bff;border:1px solid #7b7bff33}
+.season .pod{font-size:13px;color:#ccc;line-height:2}
+.season .ft{font-size:11px;color:#555;margin-top:10px;border-top:1px solid rgba(255,255,255,.05);padding-top:10px}
+.medal{display:inline-block;width:18px;text-align:center}
+.podium{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:8px}
+.pcard{border-radius:14px;padding:22px 18px;text-align:center;background:#16162a;border:1px solid rgba(255,255,255,.07)}
+.pcard.p1{border-color:#f5c84266;background:linear-gradient(180deg,#f5c84212,#16162a)}
+.pcard.p2{border-color:#aab0c044}
+.pcard.p3{border-color:#cd7f3244}
+.pcard .pm{font-size:30px}
+.pcard .pn{font-size:15px;font-weight:800;color:#fff;margin:8px 0 2px}
+.pcard .pp{font-size:12px;color:#888}
+.pcard .pv{font-size:22px;font-weight:900;margin-top:8px}
+.pcard.p1 .pv{color:#f5c842}.pcard.p2 .pv{color:#aab0c0}.pcard.p3 .pv{color:#cd7f32}
+table.mt{width:100%;border-collapse:collapse;font-size:13px}
+table.mt th{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#555;text-align:left;padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.08)}
+table.mt td{padding:9px 10px;border-bottom:1px solid rgba(255,255,255,.04);color:#ccc}
+table.mt tr:last-child td{border:none}
+table.mt .r{text-align:right;font-variant-numeric:tabular-nums}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.mg{background:#16162a;border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:16px;display:block;transition:transform .15s}
+.mg:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.18)}
+.mg .top{display:flex;gap:12px;align-items:center;margin-bottom:10px}
+.mg .av{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#fff;flex-shrink:0}
+.mg .nm{font-size:14px;font-weight:700;color:#fff}
+.mg .rl{font-size:11px;color:#555}
+.mg .row{display:flex;justify-content:space-between;font-size:12px;color:#888;padding:3px 0}
+.mg .row b{color:#fff}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:18px 0 6px}
+.tab{font-size:13px;font-weight:600;color:#888;border:1px solid #222;border-radius:10px;padding:8px 18px;cursor:pointer;user-select:none}
+.tab:hover{color:#fff;border-color:#444}
+.tab.act{color:#fff;background:#1e1e3a;border-color:#3b3b6a}
+.msec{display:none}
+.msec.act{display:block}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.bdg{font-size:11px;font-weight:700;padding:4px 11px;border-radius:14px}
+.bdg.gold{background:#f5c84218;color:#f5c842;border:1px solid #f5c84244}
+.bdg.grn{background:#22c55e18;color:#22c55e;border:1px solid #22c55e44}
+.bdg.pur{background:#a855f718;color:#a855f7;border:1px solid #a855f744}
+.avatar{width:72px;height:72px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:#fff}
+.stats{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:12px 18px;text-align:center;min-width:96px}
+.val{display:block;font-size:19px;font-weight:800;color:#fff}
+.val.g{color:#22c55e}.val.a{color:#f5c842}
+.lbl{display:block;font-size:10px;color:#555;text-transform:uppercase;letter-spacing:1.5px;margin-top:3px}
+.week{display:flex;align-items:center;gap:12px;margin:26px 0 12px}
+.week-lbl{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#555;white-space:nowrap}
+.week-line{flex:1;height:1px;background:rgba(255,255,255,.06)}
+.card{background:#16162a;border:1px solid rgba(255,255,255,.07);border-radius:14px;margin-bottom:12px;overflow:hidden}
+.card-hdr{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;cursor:pointer;gap:12px;user-select:none}
+.card-hdr:hover{background:rgba(255,255,255,.02)}
+.hdr-l{display:flex;align-items:center;gap:14px;flex:1;min-width:0}
+.day-num{text-align:center;min-width:44px;font-size:10px;color:#555;text-transform:uppercase}
+.day-num .n{display:block;font-size:21px;font-weight:900;color:#fff;line-height:1}
+.card-info h3{font-size:14px;font-weight:700;color:#fff;line-height:1.3}
+.card-info .sub{font-size:11px;color:#555;margin-top:2px}
+.hdr-r{display:flex;align-items:center;gap:8px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end}
+.fb{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px}
+.fb.z{background:#ef444422;color:#ef4444;border:1px solid #ef444433}
+.fb.lo{background:#f9731622;color:#f97316;border:1px solid #f9731633}
+.fb.hi{background:#22c55e22;color:#22c55e;border:1px solid #22c55e33}
+.fb.done{background:#22c55e11;color:#22c55e;border:2px solid #22c55e}
+.fb.pts{background:#7b7bff18;color:#9b9bff;border:1px solid #7b7bff33}
+.tog{font-size:12px;color:#444;transition:.2s;margin-left:4px}
+.card-body{padding:0 18px 18px;display:none}
+.card.open .card-body{display:block}
+.card.open .tog{transform:rotate(180deg)}
+.blk{border-radius:10px;padding:14px 16px;margin-bottom:10px}
+.blk.mo{background:#1e2a3a;border-left:3px solid #3b82f6}
+.blk.ev{background:#1a2a1a;border-left:3px solid #22c55e}
+.blk.cn{background:#2a2a1a;border-left:3px solid #f5c842}
+.blk.pu{background:#2a1a3a;border-left:3px solid #a855f7}
+.blk-lbl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#555;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.dot{width:6px;height:6px;border-radius:50%;background:currentColor;display:inline-block}
+.blk.mo .dot{color:#3b82f6}.blk.ev .dot{color:#22c55e}.blk.cn .dot{color:#f5c842}.blk.pu .dot{color:#a855f7}
+.msg-item{margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px;line-height:1.7;color:#ccc}
+.msg-item:last-child{border:none;margin-bottom:0;padding-bottom:0}
+.msg-time{display:inline-block;font-size:10px;color:#555;margin-right:8px;font-family:monospace;background:#0d0d1a;padding:1px 6px;border-radius:4px}
+.mrow{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.m{background:#0d0d1a;border-radius:8px;padding:8px 12px;min-width:100px}
+.ml{font-size:10px;color:#555;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px}
+.mv{font-size:14px;font-weight:700;color:#fff}
+.mv.a{color:#f5c842}
+footer{text-align:center;padding:32px;font-size:11px;color:#333}
+@media(max-width:640px){.brow .nm{width:110px}.brow .pts{width:90px}}
+</style>
+</head>
+<body>
+<div class="nav"><a href="index.html">Главная</a><a href="month_2026-04.html">Апрель 2026</a><a href="month_2026-05.html" class=act>Май 2026</a><a href="month_2026-06.html">Июнь 2026</a></div>
+<div class="hero">
+  <div class="hero-tag">Сезон · месяц завершён</div>
+  <h1>Май 2026</h1>
+  <div class="hero-sub">Итоги месяца по баллам игры и дневникам команды</div>
+</div>
+<div class="wrap">
+  <div class="sect">Подиум</div>
+  <div class="podium"><div class="pcard p1">
+  <div class="pm">🥇</div>
+  <div class="pn">Анна Антонова</div>
+  <div class="pp">Менеджер по продажам</div>
+  <div class="pv">346 баллов</div>
+</div><div class="pcard p2">
+  <div class="pm">🥈</div>
+  <div class="pn">Ната Ковтун</div>
+  <div class="pp">Менеджер по продажам</div>
+  <div class="pv">325 баллов</div>
+</div><div class="pcard p3">
+  <div class="pm">🥉</div>
+  <div class="pn">Динара Катунина</div>
+  <div class="pp">Менеджер по продажам</div>
+  <div class="pv">316 баллов</div>
+</div></div>
+  <div class="sect">Полная таблица</div>
+  <div class="board" style="padding:8px 20px">
+    <table class="mt">
+      <tr><th></th><th>Менеджер</th><th class="r">Баллы</th><th class="r">Деньги (из чата)</th><th class="r">Дней в дневнике</th></tr>
+      <tr><td>🥇</td><td><a href="journal_anna_a.html#m2026-05" style="color:#fff;font-weight:600">Анна Антонова</a></td><td class="r">346 <span class="bn">+101</span></td><td class="r">612 000 ₽</td><td class="r">21</td></tr><tr><td>🥈</td><td><a href="journal_nata.html#m2026-05" style="color:#fff;font-weight:600">Ната Ковтун</a></td><td class="r">325</td><td class="r">—</td><td class="r">21</td></tr><tr><td>🥉</td><td><a href="journal_dinara.html#m2026-05" style="color:#fff;font-weight:600">Динара Катунина</a></td><td class="r">316 <span class="bn">+101</span></td><td class="r">200 000 ₽</td><td class="r">20</td></tr><tr><td>4</td><td><a href="journal_diana.html#m2026-05" style="color:#fff;font-weight:600">Диана Тагирова</a></td><td class="r">270</td><td class="r">600 000 ₽</td><td class="r">20</td></tr><tr><td>5</td><td><a href="journal_sergei.html#m2026-05" style="color:#fff;font-weight:600">Сергей Кириллов</a></td><td class="r">225</td><td class="r">1 000 000 ₽</td><td class="r">18</td></tr><tr><td>6</td><td><a href="journal_oksana.html#m2026-05" style="color:#fff;font-weight:600">Оксана Панченкова</a></td><td class="r">175</td><td class="r">—</td><td class="r">19</td></tr><tr><td>7</td><td><a href="journal_potapov.html#m2026-05" style="color:#fff;font-weight:600">Савелий Потапов</a></td><td class="r">170</td><td class="r">500 000 ₽</td><td class="r">20</td></tr><tr><td>8</td><td><a href="journal_anastasia.html#m2026-05" style="color:#fff;font-weight:600">Анастасия Фомина</a></td><td class="r">146 <span class="bn">+101</span></td><td class="r">—</td><td class="r">0</td></tr><tr><td>9</td><td><a href="journal_anna_k.html#m2026-05" style="color:#fff;font-weight:600">Анна Кириллова</a></td><td class="r">90</td><td class="r">250 000 ₽</td><td class="r">14</td></tr>
+    </table>
+  </div>
+  <div class="sect">Рекорды месяца</div>
+  <div class="cards4"><div class="mcard"><div class="l">Лучший денежный день</div><div class="v a">Сергей · 1 000 000 ₽</div></div><div class="mcard"><div class="l">Самый активный дневник</div><div class="v">Ната · 21 дн.</div></div><div class="mcard"><div class="l">Закрыли план месяца</div><div class="v g">Динара, Анастасия, Анна А.</div></div><div class="mcard"><div class="l">Команда за месяц</div><div class="v">2063 б. · 3 162 000 ₽</div></div></div>
+</div>
+<footer>Обновлено 12.06.2026 13:08 · Путь 101% 2026 · обновляется автоматически</footer>
+<script>function toggle(id){document.getElementById(id).classList.toggle('open')}
+</script>
+</body>
+</html>
