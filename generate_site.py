@@ -61,6 +61,10 @@ PLAN_SKIP = re.compile(r'день|дня|дню|недел|нед\b', re.IGNOREC
 
 
 def parse_plan_amount(s):
+    mln = re.match(r'(\d+(?:[.,]\d+)?)\s*(?:млн|миллион)', s, re.IGNORECASE)
+    if mln:
+        v = int(float(mln.group(1).replace(',', '.')) * 1_000_000)
+        return v if 10_000 <= v <= 20_000_000 else None
     m = re.match(r'(\d[\d\s .,]*)\s*(к|k|тыс)?', s, re.IGNORECASE)
     if not m:
         return None
@@ -104,9 +108,16 @@ def prep_data(messages, game):
             if name:
                 game_by_name[name][mk] = info
 
-    # Сезоны = месяцы из игровой таблицы; сообщения «чужих» месяцев
-    # (например, 30-31 марта — старт игры) приклеиваются к ближайшему сезону
-    months = sorted(game.keys()) or sorted({month_key(m['date']) for m in messages})
+    # Сезоны = месяцы из игровой таблицы; ранние «чужие» сообщения
+    # (например, 30-31 марта — старт игры) приклеиваются к ближайшему сезону.
+    # Месяцы ПОЗЖЕ последнего листа Excel становятся сезонами сами
+    # (иначе июльские сообщения попадали бы в июнь, пока нет листа «Июль»).
+    msg_months = {month_key(m['date']) for m in messages}
+    game_months = sorted(game.keys())
+    if game_months:
+        months = sorted(set(game_months) | {mk for mk in msg_months if mk > game_months[-1]})
+    else:
+        months = sorted(msg_months)
 
     def season_of(mk):
         if mk in months:

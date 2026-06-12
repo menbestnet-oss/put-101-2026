@@ -40,8 +40,44 @@ def log(msg):
         f.write(line + "\n")
 
 
+LOCK_FILE = os.path.join(SCRIPT_DIR, "auto_update.lock")
+LOCK_STALE_SEC = 30 * 60
+
+
+def acquire_lock():
+    """Защита от параллельного запуска (планировщик + ручной)."""
+    try:
+        if os.path.exists(LOCK_FILE):
+            age = datetime.now().timestamp() - os.path.getmtime(LOCK_FILE)
+            if age < LOCK_STALE_SEC:
+                return False
+            os.remove(LOCK_FILE)  # протухший лок от упавшего процесса
+        with open(LOCK_FILE, "x") as f:
+            f.write(str(os.getpid()))
+        return True
+    except (FileExistsError, OSError):
+        return False
+
+
+def release_lock():
+    try:
+        os.remove(LOCK_FILE)
+    except OSError:
+        pass
+
+
 def main():
     force = "--force" in sys.argv
+    if not acquire_lock():
+        log("Другой запуск ещё работает — выходим")
+        return 0
+    try:
+        return _run(force)
+    finally:
+        release_lock()
+
+
+def _run(force):
     log("── Запуск автообновления ──")
 
     # 1. Загрузка сообщений из Telegram

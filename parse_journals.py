@@ -270,6 +270,13 @@ def _amounts_in(line):
                 amounts.append(v)
         except Exception:
             pass
+    for m in re.finditer(r'(\d+(?:[.,]\d+)?)\s*(?:млн|миллион)', line, re.IGNORECASE):
+        try:
+            v = int(float(m.group(1).replace(',', '.')) * 1_000_000)
+            if 1_000 <= v <= 10_000_000:
+                amounts.append(v)
+        except Exception:
+            pass
     return amounts
 
 

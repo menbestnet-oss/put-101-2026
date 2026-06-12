@@ -1,6 +1,7 @@
 messages_cache.json
 game_cache.json
 auto_update.log
+auto_update.lock
 .claude/
 *.session
 *.session-journal
