@@ -238,7 +238,9 @@ def classify(msg):
     return 'other'
 
 FACT_LINE_RE  = re.compile(r'факт', re.IGNORECASE)
-NOT_MONEY_RE  = re.compile(r'план|остал|цель', re.IGNORECASE)
+NOT_MONEY_RE  = re.compile(r'план|остал|цел[ьи]|долг', re.IGNORECASE)
+# Без слова «факт» сумма считается только из строк о реальной продаже
+SALE_HINT_RE  = re.compile(r'закрыт|закрыл|оплат|продал|сделк|касс|приход|выручк|итого|внес|поступ', re.IGNORECASE)
 
 
 def _amounts_in(line):
@@ -258,10 +260,13 @@ def _amounts_in(line):
                 amounts.append(v)
         except Exception:
             pass
-    for m in re.finditer(r'(?<!\d)(\d{2,4})[кk](?!\w)', line, re.IGNORECASE):
+    for m in re.finditer(r'(?<!\d)(\d{1,3}(?:\s\d{3})+|\d+)[кk](?!\w)', line, re.IGNORECASE):
         try:
-            v = int(m.group(1)) * 1000
-            if 10_000 <= v <= 10_000_000:
+            v = int(re.sub(r'\D', '', m.group(1)))
+            # «450к» = 450 000, но «112 858к» — это уже рубли, «к» дописано по привычке
+            if v < 10_000:
+                v *= 1000
+            if 1_000 <= v <= 10_000_000:
                 amounts.append(v)
         except Exception:
             pass
@@ -281,9 +286,9 @@ def extract_amount(texts):
             vals = _amounts_in(line)
             if not vals:
                 continue
-            if FACT_LINE_RE.search(line):
+            if FACT_LINE_RE.search(line) and not re.search(r'долг', line, re.IGNORECASE):
                 fact_amounts.extend(vals)
-            elif not NOT_MONEY_RE.search(line):
+            elif not NOT_MONEY_RE.search(line) and SALE_HINT_RE.search(line):
                 other_amounts.extend(vals)
     if fact_amounts:
         return max(fact_amounts)
