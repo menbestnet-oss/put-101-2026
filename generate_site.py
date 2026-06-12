@@ -15,7 +15,8 @@
 
 import calendar
 import os
-from collections import defaultdict
+import re
+from collections import Counter, defaultdict
 from datetime import datetime, date
 
 from parse_journals import (
@@ -50,6 +51,47 @@ def short(name):
     parts = name.split()
     twins = [n for n in MANAGERS if n != name and n.split()[0] == parts[0]]
     return f"{parts[0]} {parts[-1][0]}." if twins and len(parts) > 1 else parts[0]
+
+
+# ── Планы месяца из сообщений ─────────────────────────────────────────────────
+# Менеджеры объявляют план в утренних отчётах: «План месяца: 450к», «План: 500.000»
+
+PLAN_LINE = re.compile(r'^\s*план(?:\s+месяца|\s+на\s+месяц)?\s*[:\-–—]?\s*(.*)', re.IGNORECASE)
+PLAN_SKIP = re.compile(r'день|дня|дню|недел|нед\b', re.IGNORECASE)
+
+
+def parse_plan_amount(s):
+    m = re.match(r'(\d[\d\s .,]*)\s*(к|k|тыс)?', s, re.IGNORECASE)
+    if not m:
+        return None
+    digits = re.sub(r'[\s .,]', '', m.group(1))
+    if not digits:
+        return None
+    v = int(digits)
+    if m.group(2) and v < 10_000:
+        v *= 1000
+    return v if 10_000 <= v <= 20_000_000 else None
+
+
+def plan_from_msgs(msgs):
+    """Самый часто объявляемый план месяца в сообщениях (None, если не объявлен)."""
+    counter = Counter()
+    for msg in msgs:
+        for line in msg['text'].split('\n'):
+            mm = PLAN_LINE.match(line)
+            if not mm or PLAN_SKIP.search(line):
+                continue
+            v = parse_plan_amount(mm.group(1))
+            if v:
+                counter[v] += 1
+    return counter.most_common(1)[0][0] if counter else None
+
+
+def fmt_mln(v):
+    if v >= 1_000_000:
+        s = f"{v / 1_000_000:.1f}".rstrip('0').rstrip('.').replace('.', ',')
+        return f"{s} млн ₽"
+    return fmt(v)
 
 
 def prep_data(messages, game):
@@ -92,6 +134,7 @@ def prep_data(messages, game):
                 if a:
                     money_by_day[d] = a
             g = game_by_name.get(name, {}).get(mk, {})
+            all_msgs = [m for ms in days.values() for m in ms]
             data[name][mk] = {
                 'days': days,
                 'money_by_day': money_by_day,
@@ -99,7 +142,22 @@ def prep_data(messages, game):
                 'points': g.get('total', 0.0),
                 'points_by_day': g.get('days', {}),
                 'plan_bonus': bool(g.get('plan_bonus')),
+                'plan': plan_from_msgs(all_msgs),
             }
+
+        # План не объявлен → берём из прошлого месяца, в крайнем случае из конфига
+        carry = None
+        for mk in months:
+            info = data[name][mk]
+            if info['plan']:
+                carry = info['plan']
+                info['plan_source'] = 'chat'
+            elif carry:
+                info['plan'] = carry
+                info['plan_source'] = 'prev'
+            else:
+                info['plan'] = MANAGERS[name]['plan']
+                info['plan_source'] = 'config'
 
     # Места по баллам в каждом месяце
     boards = {}  # month -> [(name, points)]
@@ -423,7 +481,7 @@ def make_index(data, months, boards, today):
   <div class="cards4">
     <div class="mcard"><div class="l">Лидер месяца</div><div class="v a">{short(board[0][0])} · {board[0][1]:.0f} б.</div></div>
     <div class="mcard"><div class="l">Баллы команды</div><div class="v">{points_total:.0f}</div></div>
-    <div class="mcard"><div class="l">Деньги команды</div><div class="v g">{fmt(money_total) if money_total else '—'}</div></div>
+    <div class="mcard"><div class="l">Деньги: факт / план</div><div class="v g">{fmt_mln(money_total) if money_total else '—'} <span style="color:#555;font-size:14px">/ {fmt_mln(sum(data[n][cur]['plan'] or 0 for n in MANAGERS))}</span></div></div>
     <div class="mcard"><div class="l">До конца месяца</div><div class="v">{days_left} дн.</div></div>
   </div>
   {chips_html}
@@ -462,11 +520,16 @@ def make_month_page(data, months, boards, mk, today):
         info = data[n][mk]
         cfg = MANAGERS[n]
         bonus = ' <span class="bn">+101</span>' if info['plan_bonus'] else ''
+        plan_m = info['plan']
+        pct = round(info['money'] / plan_m * 100) if info['money'] and plan_m else 0
+        pct_html = f'<span style="color:{"#22c55e" if pct >= 100 else "#888"}">{pct}%</span>' if pct else '—'
         trows.append(
             f'<tr><td>{MEDALS.get(place, place)}</td>'
             f'<td><a href="{cfg["file"]}#m{mk}" style="color:#fff;font-weight:600">{n}</a></td>'
             f'<td class="r">{pts:.0f}{bonus}</td>'
             f'<td class="r">{fmt(info["money"]) if info["money"] else "—"}</td>'
+            f'<td class="r">{fmt(plan_m) if plan_m else "—"}</td>'
+            f'<td class="r">{pct_html}</td>'
             f'<td class="r">{len(info["days"])}</td></tr>'
         )
 
@@ -494,7 +557,7 @@ def make_month_page(data, months, boards, mk, today):
   <div class="sect">Полная таблица</div>
   <div class="board" style="padding:8px 20px">
     <table class="mt">
-      <tr><th></th><th>Менеджер</th><th class="r">Баллы</th><th class="r">Деньги (из чата)</th><th class="r">Дней в дневнике</th></tr>
+      <tr><th></th><th>Менеджер</th><th class="r">Баллы</th><th class="r">Деньги</th><th class="r">План (из чата)</th><th class="r">%</th><th class="r">Дней</th></tr>
       {''.join(trows)}
     </table>
   </div>
@@ -507,7 +570,6 @@ def make_month_page(data, months, boards, mk, today):
 # ── Журнал менеджера ──────────────────────────────────────────────────────────
 
 def make_journal(name, cfg, data, months, boards, today):
-    plan = cfg['plan']
     grad = cfg['grad']
 
     month_tabs, month_secs = [], []
@@ -525,6 +587,9 @@ def make_journal(name, cfg, data, months, boards, today):
         evening_days = sum(1 for d, ms in days_data.items() if any(classify(m) == 'evening' for m in ms))
         money = info['money']
         place = info.get('place')
+        plan = info['plan']
+        plan_lbl = 'План месяца' if info.get('plan_source') == 'chat' else 'План (не объявлен)'
+        money_pct = round(money / plan * 100) if money and plan else 0
 
         badges = []
         if place == 1 and mk != month_key(today):
@@ -593,6 +658,8 @@ def make_journal(name, cfg, data, months, boards, today):
     <div class="stat"><span class="val a">{info['points']:.0f}</span><span class="lbl">Баллы</span></div>
     <div class="stat"><span class="val">{f"{place} из 9" if place else "—"}</span><span class="lbl">Место</span></div>
     <div class="stat"><span class="val g">{fmt(money) if money else '—'}</span><span class="lbl">Деньги</span></div>
+    <div class="stat"><span class="val">{fmt(plan) if plan else '—'}</span><span class="lbl">{plan_lbl}</span></div>
+    <div class="stat"><span class="val{' g' if money_pct >= 100 else ''}">{f"{money_pct}%" if money_pct else '—'}</span><span class="lbl">% ден. плана</span></div>
     <div class="stat"><span class="val">{len(all_days)}</span><span class="lbl">Дней</span></div>
     <div class="stat"><span class="val">{morning_days}</span><span class="lbl">Утренних</span></div>
     <div class="stat"><span class="val">{evening_days}</span><span class="lbl">Рефлексий</span></div>
@@ -604,7 +671,7 @@ def make_journal(name, cfg, data, months, boards, today):
     body = f"""<div class="hero">
   <div class="avatar" style="background:linear-gradient(135deg,{grad})">{cfg['initials']}</div>
   <h1>{name}</h1>
-  <div class="hero-sub">{cfg['role']} · план {fmt(plan)}</div>
+  <div class="hero-sub">{cfg['role']}</div>
   <div class="tabs">{''.join(month_tabs)}</div>
 </div>
 <div class="wrap">
