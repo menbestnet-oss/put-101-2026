@@ -237,32 +237,57 @@ def classify(msg):
         return 'evening'
     return 'other'
 
-def extract_amount(texts):
-    """Возвращает максимальную сумму из текстов (₽, тыс, к)."""
+FACT_LINE_RE  = re.compile(r'факт', re.IGNORECASE)
+NOT_MONEY_RE  = re.compile(r'план|остал|цель', re.IGNORECASE)
+
+
+def _amounts_in(line):
+    """Все суммы в строке (₽/руб, тыс, к/k)."""
     amounts = []
-    combined = '\n'.join(texts)
-    for m in re.finditer(r'(\d[\d\s]{0,9})\s*(?:₽|руб\.?)', combined):
+    for m in re.finditer(r'(\d[\d\s]{0,9})\s*(?:₽|руб\.?)', line):
         try:
             v = int(re.sub(r'\s', '', m.group(1)))
             if 1_000 <= v <= 10_000_000:
                 amounts.append(v)
         except Exception:
             pass
-    for m in re.finditer(r'(\d+(?:[.,]\d+)?)\s*тыс', combined, re.IGNORECASE):
+    for m in re.finditer(r'(\d+(?:[.,]\d+)?)\s*тыс', line, re.IGNORECASE):
         try:
             v = int(float(m.group(1).replace(',', '.')) * 1000)
             if 1_000 <= v <= 10_000_000:
                 amounts.append(v)
         except Exception:
             pass
-    for m in re.finditer(r'(?<!\d)(\d{2,4})[кk](?!\w)', combined, re.IGNORECASE):
+    for m in re.finditer(r'(?<!\d)(\d{2,4})[кk](?!\w)', line, re.IGNORECASE):
         try:
             v = int(m.group(1)) * 1000
             if 10_000 <= v <= 10_000_000:
                 amounts.append(v)
         except Exception:
             pass
-    return max(amounts) if amounts else None
+    return amounts
+
+
+def extract_amount(texts):
+    """Максимальный заработанный факт из текстов.
+
+    Разбор построчный: строки со словом «факт» — приоритет; строки с
+    «план»/«осталось»/«цель» не считаются деньгами вообще (иначе
+    «План месяца: 1 000 000» засчитывался как заработок).
+    """
+    fact_amounts, other_amounts = [], []
+    for text in texts:
+        for line in text.split('\n'):
+            vals = _amounts_in(line)
+            if not vals:
+                continue
+            if FACT_LINE_RE.search(line):
+                fact_amounts.extend(vals)
+            elif not NOT_MONEY_RE.search(line):
+                other_amounts.extend(vals)
+    if fact_amounts:
+        return max(fact_amounts)
+    return max(other_amounts) if other_amounts else None
 
 def fmt(v):
     return f"{v:,}".replace(',', ' ') + ' ₽'
